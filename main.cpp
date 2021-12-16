@@ -28,7 +28,10 @@ void testProg2(){
 	while (true){ 
 		int remaining = deck.size() - NUM_CARDS;
 		// cout << "d: " << deck.size() << " s: " << NUM_CARDS << endl;
-		cout << "Cards remaining: " << remaining << endl;
+		if (remaining >= 0)
+			cout << "Cards remaining: " << remaining << endl;
+		else
+			cout << "Cards remaining: 0" << endl;
 
 		// If we don't have enough cards remaining, draw the remaining
 		if (remaining <= 0){
@@ -39,7 +42,6 @@ void testProg2(){
 		// Otherwise, draw NUM_CARDS.
 		} else {
 			vector<Card> hand = CH.drawCards(deck, NUM_CARDS);
-			cout << "2" << endl; 
 			DH.drawCards(hand, NUM_CARDS);
 		}
 		this_thread::sleep_for(TIME_CONST);

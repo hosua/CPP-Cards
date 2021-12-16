@@ -1,2 +1,3 @@
 # CPP-Cards
-Cards in C++
+Text-based cards in C++
+Compile main.cpp, then run the binary. 

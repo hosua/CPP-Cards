@@ -57,10 +57,10 @@ map<string,string*> drawMap = {
 class DrawHandler{
 
 public:
-	void drawCards(vector<Card> cardVect, int numCards=5, int facedown=0){ // Draws an array of cards in ASCII
+	void drawCards(vector<Card> cardVect, int numCards=5, int faceDown=0){ // Draws an array of cards in ASCII
 		string outStr;
 		for (int i = 0; i < CARD_HEIGHT; i++){
-			for (int j = 0; j < numCards-facedown; j++){
+			for (int j = 0; j < numCards-faceDown; j++){
 				Card c = cardVect[j];
 				string cardStr = drawMap.find(c.getSuit())->second[i];
 				char ch;
@@ -89,18 +89,16 @@ public:
 				}
 				outStr += cardStr;
 			}
-			for (int j = 0; j < facedown; j++){
+			for (int j = 0; j < faceDown; j++){
 				outStr += facedownCard[i];
 			}
 			outStr += "\n";
 		}		
 		cout << outStr;
-	
 	}
 
 	// Incase only drawing a single, non vector Card
-	/*
-	string drawSingle(Card c){
+	void drawSingle(Card c){
 		string outStr, cardStr;
 		for (int i = 0; i < CARD_HEIGHT; i++){
 			cardStr = drawMap.find(c.getSuit())->second[i];
@@ -124,9 +122,7 @@ public:
 			outStr += cardStr + "\n";
 		}
 		cout << outStr << endl;
-		return outStr;
 	}
-	*/
 
 	void drawTest1(){
 		for (int i = 0; i < CARD_HEIGHT; i++){
@@ -142,6 +138,7 @@ public:
 			cout << clubCard[i] << endl;
 		}
 	}
+
 	void drawTest2(){
 		vector<Card> hand;
 		Card c1, c2, c3, c4, c5, c6, c7, c8;

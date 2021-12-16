@@ -23,22 +23,24 @@ void testProg2(){
 
 	vector <Card> deck = CH.createDeck(NUM_DECKS);
 	CH.shuffleCards(deck);
-	int numCards = 5;
+	int NUM_CARDS = 5;
 	// Endlessly draw cards and reset deck when insufficient cards are left 
 	while (true){ 
-		int remaining = deck.size() - numCards;
-		// cout << "d: " << deck.size() << " s: " << numCards << endl;
+		int remaining = deck.size() - NUM_CARDS;
+		// cout << "d: " << deck.size() << " s: " << NUM_CARDS << endl;
 		cout << "Cards remaining: " << remaining << endl;
+
+		// If we don't have enough cards remaining, draw the remaining
 		if (remaining <= 0){
 			CH.drawCards(deck, remaining);
 			// Create & shuffle
 			deck = CH.createDeck(NUM_DECKS);
 			CH.shuffleCards(deck);
-
+		// Otherwise, draw NUM_CARDS.
 		} else {
-			vector<Card> hand = CH.drawCards(deck, numCards);
+			vector<Card> hand = CH.drawCards(deck, NUM_CARDS);
 			cout << "2" << endl; 
-			DH.drawCards(hand, 1);
+			DH.drawCards(hand, NUM_CARDS);
 		}
 		this_thread::sleep_for(TIME_CONST);
 	}
@@ -47,10 +49,8 @@ void testProg2(){
 
 
 int main(){
-	srand(time(0)); // Always start program with this to set a seed based on the time
-	// testProg1();	
-	testProg1();
-	// testProg2();
+	srand(time(0)); // Always start program with this to set RNG seed based on the time
+	testProg2();
 
 }
 

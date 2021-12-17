@@ -6,17 +6,8 @@
 #include <algorithm>
 
 using namespace std;
-/* // Keeping this just incase I ever decide I wanna flip these around 
-map <string, string> rankMap = { 
-	{"1", "Ace"}, {"2", "Two"}, {"3", "Three"}, {"4", "Four"}, 
-	{"5", "Five"}, {"6", "Six"}, {"7", "Seven"}, {"8", "Eight"}, 
-	{"9", "Nine"}, {"10", "Ten"}, {"J", "Jack"}, {"Q", "Queen"}, 
-	{"K", "King"} 
-};
-*/
 
-
-enum Rank { Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace };
+enum Rank { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King};
 enum Suit { Diamond, Heart, Club, Spade };
 
 map <string, char> suitMap = { 
@@ -28,6 +19,7 @@ map <Suit, string> suitToStr = {
 	{ Diamond, "Diamond" }, { Heart, "Heart" },
 	{ Club, "Club" }, { Spade, "Spade" }
 };
+
 map <Rank, string> rankToStr = {
 	{ Ace, "Ace" }, { Two, "Two" }, { Three, "Three" }, { Four, "Four" }, 
 	{ Five, "Five" }, { Six, "Six" }, { Seven, "Seven" }, { Eight, "Eight" },
@@ -37,12 +29,20 @@ map <Rank, string> rankToStr = {
 
 map <string, char> rankChar = { 
 	// 10 will awkwardly be displayed as 'T' with ->second, but whatever.
-	// Just manually deal with it later idk wtf to do with it right now
+	// Just manually deal with it later. idk wtf to do with it right now
 	{"Ace", 'A'}, {"Two", '2'}, {"Three", '3'}, {"Four", '4'}, 
 	{"Five", '5'}, {"Six", '6'}, {"Seven", '7'}, {"Eight", '8'}, 
 	{"Nine", '9'}, {"Ten", 'T'}, {"Jack", 'J'}, {"Queen", 'Q'}, 
 	{"King", 'K'} 
 };
+
+map <Rank, int> rankVal = {
+	{Two, 2}, {Three, 3}, {Four, 4}, {Five, 5}, 
+	{Six, 6}, {Seven, 7}, {Eight, 8}, {Nine, 9}, 
+	{Ten, 10}, {Jack, 11}, {Queen, 12}, {King, 13},
+	{Ace, 14}
+};
+
 class Card{
 	private:
 		Rank rank;

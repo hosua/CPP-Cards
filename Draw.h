@@ -56,48 +56,48 @@ map<Suit,string*> drawMap = {
 
 class DrawHandler{
 
-public:
-	void drawCards(vector<Card> cardVect, int numCards=-1, int faceDown=0){ // Draws an array of cards in ASCII
-		string outStr;
-		// By default numCards will just be the vector size
-		if (numCards == -1) numCards = cardVect.size(); 		
-		for (int i = 0; i < CARD_HEIGHT; i++){
-			for (int j = 0; j < numCards-faceDown; j++){
-				Card c = cardVect[j];
-				string cardStr = drawMap.find(c.getSuit())->second[i];
-				char ch;
-				if (c.getRank() != Ten){
-					// This use of double maps is actually fucking awful. Maybe think of a cleaner way to do this?
-					ch = rankChar.find(rankToStr.find(c.getRank())->second)->second;
-					replace(cardStr.begin(), cardStr.end(), 'Z', ch);
-				} else {
-					// 10 will require a special case because it is 2 digits long
-					if (i == 1){
-						if (c.getSuit() == Spade){
-							cardStr = "10 .  |";
-						} 
-						if (c.getSuit() == Diamond){
-							cardStr = "10 ^  |";
+	public:
+		void drawCards(vector<Card> cardVect, int numCards=-1, int faceDown=0){ // Draws an array of cards in ASCII
+			string outStr;
+			// By default numCards will just be the vector size
+			if (numCards == -1) numCards = cardVect.size(); 		
+			for (int i = 0; i < CARD_HEIGHT; i++){
+				for (int j = 0; j < numCards-faceDown; j++){
+					Card c = cardVect[j];
+					string cardStr = drawMap.find(c.getSuit())->second[i];
+					char ch;
+					if (c.getRank() != Ten){
+						// This use of double maps is actually fucking awful. Maybe think of a cleaner way to do this?
+						ch = rankChar.find(rankToStr.find(c.getRank())->second)->second;
+						replace(cardStr.begin(), cardStr.end(), 'Z', ch);
+					} else {
+						// 10 will require a special case because it is 2 digits long
+						if (i == 1){
+							if (c.getSuit() == Spade){
+								cardStr = "10 .  |";
+							} 
+							if (c.getSuit() == Diamond){
+								cardStr = "10 ^  |";
+							}
+							if (c.getSuit() == Club){
+								cardStr = "10 _  |";
+							}
+							if (c.getSuit() == Heart){
+								cardStr = "10_ _ |";
+							}
 						}
-						if (c.getSuit() == Club){
-							cardStr = "10 _  |";
-						}
-						if (c.getSuit() == Heart){
-							cardStr = "10_ _ |";
+						if (i == 5){
+							cardStr = "|___10|";
 						}
 					}
-					if (i == 5){
-						cardStr = "|___10|";
-					}
+					outStr += cardStr;
 				}
-				outStr += cardStr;
-			}
-			for (int j = 0; j < faceDown; j++){
-				outStr += facedownCard[i];
-			}
-			outStr += "\n";
-		}		
-		cout << outStr;
+				for (int j = 0; j < faceDown; j++){
+					outStr += facedownCard[i];
+				}
+				outStr += "\n";
+			}		
+			cout << outStr;
 	}
 
 	// Incase only drawing a single, non vector Card

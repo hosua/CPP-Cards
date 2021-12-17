@@ -5,7 +5,7 @@
 
 /* Some time to sleep for. We'll just set it to 1 second because why wouldn't I */
 //static const chrono::milliseconds TIME_CONST(1000); 
-static const chrono::milliseconds TIME_CONST(50); 
+static const chrono::milliseconds TIME_CONST(500); 
 void testProg1(){
 	CardHandler CH;
 	DrawHandler DH;

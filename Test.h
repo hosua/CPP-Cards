@@ -25,18 +25,22 @@ void testProg2(){
 	vector <Card> hand;
 	CH.shuffleCards(deck);
 	int NUM_CARDS = 5;
+	bool dontDraw;
 	while (true){ 
+		dontDraw = false;
 		cout << "Size: " << deck.size() << endl;
 		if (deck.size() < NUM_CARDS && deck.size() != 0){
 			hand = CH.drawCards(deck, deck.size());
 			cout << "Drew " << deck.size() << " cards." << endl;
 		} else if (deck.size() == 0){
 			deck = CH.createDeck(NUM_DECKS);
+			dontDraw = true;
 		} else {
 			hand = CH.drawCards(deck, NUM_CARDS);
 			cout << "Drew " << NUM_CARDS << " cards." << endl;
 		}
-		DH.drawCards(hand);
+		if (!dontDraw) DH.drawCards(hand);
+		
 		
 		this_thread::sleep_for(TIME_CONST);
 	}

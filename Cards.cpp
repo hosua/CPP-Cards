@@ -71,10 +71,8 @@ class CardHandler{
 			}
 
 		void shuffleCards(vector<Card> &cards){
-			cout << "Shuffling the deck..." << endl;
 			random_shuffle(begin(cards), end(cards));
 		}
-		 
 		vector<Card> drawCards(vector<Card> &cards, int n){
 			vector <Card> c;
 			int a = 0;

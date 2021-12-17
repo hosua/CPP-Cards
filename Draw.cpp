@@ -57,8 +57,10 @@ map<string,string*> drawMap = {
 class DrawHandler{
 
 public:
-	void drawCards(vector<Card> cardVect, int numCards=5, int faceDown=0){ // Draws an array of cards in ASCII
+	void drawCards(vector<Card> cardVect, int numCards=-1, int faceDown=0){ // Draws an array of cards in ASCII
 		string outStr;
+		// By default numCards will just be the vector size
+		if (numCards == -1) numCards = cardVect.size(); 		
 		for (int i = 0; i < CARD_HEIGHT; i++){
 			for (int j = 0; j < numCards-faceDown; j++){
 				Card c = cardVect[j];

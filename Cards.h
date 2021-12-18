@@ -11,8 +11,8 @@ enum Rank { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Que
 enum Suit { Diamond, Heart, Club, Spade };
 
 map <string, char> suitMap = { 
-	{"Diamond", 'D'}, {"Club", 'C'}, 
-	{"Heart", 'H'}, {"Spade", 'S'}
+	{ "Diamond", 'D' }, { "Club", 'C' }, 
+	{ "Heart", 'H' }, { "Spade", 'S' }
 };
 
 map <Suit, string> suitToStr = {
@@ -30,12 +30,13 @@ map <Rank, string> rankToStr = {
 map <Rank, char> rankToChar = { 
 	// 10 will awkwardly be displayed as 'T' with ->second, but whatever.
 	// Just manually deal with it later. idk wtf to do with it right now
-	{ Ace, 'A'}, { Two, '2'}, { Three, '3'}, {Four, '4'}, 
-	{ Five, '5'}, { Six, '6'}, { Seven, '7'}, {Eight, '8'}, 
-	{ Nine, '9'}, { Ten, 'T'}, {Jack, 'J'}, {Queen, 'Q'}, 
+	{ Ace, 'A'}, { Two, '2'}, { Three, '3'}, { Four, '4'}, 
+	{ Five, '5'}, { Six, '6'}, { Seven, '7'}, { Eight, '8'}, 
+	{ Nine, '9'}, { Ten, 'T'}, { Jack, 'J'}, { Queen, 'Q'}, 
 	{ King, 'K'} 
 };
 
+// For war
 map <Rank, int> rankVal = {
 	{ Two, 2 }, { Three, 3 }, { Four, 4 }, { Five, 5 }, 
 	{ Six, 6 }, { Seven, 7 }, { Eight, 8 }, { Nine, 9 }, 

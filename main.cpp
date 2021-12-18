@@ -5,7 +5,10 @@ int main(){
 	//DrawHandler DH;
 	//DH.drawTest2();
 	srand(time(0)); // Always start program with this to set RNG seed based on the time
-	testProg2();
+	//testProg2();
+	DrawHandler DH;
+	DH.drawTest2();
+	DH.drawTest3();
 
 }
 

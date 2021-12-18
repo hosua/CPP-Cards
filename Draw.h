@@ -134,32 +134,74 @@ class DrawHandler{
 							if (i == 1){
 								cardStr = "|10";
 							}
+							if (i == 5){
+								cardStr = "|__";
+							}
 
 						}
 						outStr += cardStr;
 					}
-					// Draw the last card
+					// Draw the last card 
 					c = cardVect[numDrawn-1-facedown];
-					if (facedown == cardVect.size() || facedown == numDrawn)
-						cardStr = facedownCard[i].substr(3,6);
-					else 
-						cardStr = drawMap.find(c.getSuit())->second[i].substr(3,6);
-					replace(cardStr.begin(), cardStr.end(), 'Z', ch);
-					outStr += cardStr;
+					// Make sure we actually have any cards to draw
+					if (numDrawn != 0){
+						if (facedown == cardVect.size() || facedown == numDrawn)
+							cardStr = facedownCard[i].substr(3,6);
+						else {
+							ch = rankToChar.find(c.getRank())->second;
+							cardStr = drawMap.find(c.getSuit())->second[i].substr(3,6);
+							if (c.getRank() != Ten)
+								replace(cardStr.begin(), cardStr.end(), 'Z', ch);
+							else {
+								if (i == 1){
+									if (c.getSuit() == Spade){
+										cardStr = ".  |";
+									} 
+									if (c.getSuit() == Diamond){
+										cardStr = "^  |";
+									}
+									if (c.getSuit() == Club){
+										cardStr = "_  |";
+									}
+									if (c.getSuit() == Heart){
+										cardStr = " _ |";
+									}
+								}
+								if (i == 5){
+									cardStr = "___|";
+								}
+							}
+						}
+						
+						outStr += cardStr;
+					}
 					outStr += "\n";
 				}		
 				cout << outStr << endl;
-			// Left orientation
-			} else {
+			} else {  // Left orientation
 				for (int i = 0; i < CARD_HEIGHT; i++){
 					// Draw the first card
 					c = cardVect[0];
-					if (facedown == cardVect.size() || facedown == numDrawn)
-						cardStr = facedownCard[i].substr(0,3);
-					else 
-						cardStr = drawMap.find(c.getSuit())->second[i].substr(0,3);
-					replace(cardStr.begin(), cardStr.end(), 'Z', ch);
-					outStr += cardStr;
+					// Make sure we actually have any cards to draw
+					if (numDrawn != 0){
+						if (facedown == cardVect.size() || facedown == numDrawn)
+							cardStr = facedownCard[i].substr(0,3);
+						else {
+							cardStr = drawMap.find(c.getSuit())->second[i].substr(0,3);
+							if (c.getRank() != Ten){
+								replace(cardStr.begin(), cardStr.end(), 'Z', ch);
+							} else {
+								if (i == 1){
+									cardStr = "|10";
+								}
+								if (i == 5){
+									cardStr = "|__";
+								}
+							}
+						}
+
+						outStr += cardStr;
+					}
 					for (int j = 0; j < numDrawn-facedown; j++){
 						c = cardVect[j];
 						cardStr = drawMap.find(c.getSuit())->second[i];
@@ -263,14 +305,14 @@ void drawTest2(){
 	c6.setCard(Ten, Heart);	
 	c7.setCard(Ten, Diamond);
 	c8.setCard(Ten, Club); 
-	hand.push_back(c1);
-	hand.push_back(c2);
-	hand.push_back(c3);
-	hand.push_back(c4);
 	hand.push_back(c5);
 	hand.push_back(c6);
 	hand.push_back(c7);
 	hand.push_back(c8);
+	hand.push_back(c1);
+	hand.push_back(c2);
+	hand.push_back(c3);
+	hand.push_back(c4);
 	DrawHandler Drawer;
 	Drawer.drawStacked(hand, 6, 4);
 }
@@ -287,14 +329,14 @@ void drawTest3(){
 	c6.setCard(Ten, Heart);	
 	c7.setCard(Ten, Diamond);
 	c8.setCard(Ten, Club); 
-	hand.push_back(c1);
-	hand.push_back(c2);
-	hand.push_back(c3);
-	hand.push_back(c4);
 	hand.push_back(c5);
 	hand.push_back(c6);
 	hand.push_back(c7);
 	hand.push_back(c8);
+	hand.push_back(c1);
+	hand.push_back(c2);
+	hand.push_back(c3);
+	hand.push_back(c4);
 	DrawHandler Drawer;
 	Drawer.drawStacked(hand, 6, 4, false);
 }

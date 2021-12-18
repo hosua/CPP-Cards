@@ -46,14 +46,19 @@ void testProg2(){
 	}
 }
 
-void testProg3(){
+
+void testProg3(){ 	
 	CardHandler CH;
 	DrawHandler DH;
-	int NUM_DECKS = 1;
+	int NUM_DECKS = 6;
 
 	vector <Card> deck = CH.createDeck(NUM_DECKS);
 	vector <Card> hand;
-	int NUM_CARDS = 5;
+	int NUM_CARDS = 10;
+	// Do not forget to do +1 to omit cases when we have 0, otherwise we will get
+	// Floating point errors.
+	int numDrawn = rand() % NUM_CARDS+1;
+	int numDown = rand() % numDrawn+1;
 	bool dontDraw;
 	while (true){ 
 		dontDraw = false;
@@ -65,11 +70,12 @@ void testProg3(){
 			deck = CH.createDeck(NUM_DECKS);
 			dontDraw = true;
 		} else {
-			hand = CH.drawCards(deck, NUM_CARDS);
-			cout << "Drew " << NUM_CARDS << " cards." << endl;
+			hand = CH.drawCards(deck, numDrawn);
+			cout << "Drew " << numDrawn << " cards." << endl;
 		}
-		if (!dontDraw) DH.drawStacked(hand, 6, 2);
-		
+		if (!dontDraw && numDrawn > 0) DH.drawStacked(hand, numDrawn, numDown, false);
+		numDrawn = rand() % NUM_CARDS+1;
+		numDown = rand() % NUM_CARDS+1;
 		
 		this_thread::sleep_for(TIME_CONST);
 	}

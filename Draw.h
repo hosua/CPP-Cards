@@ -67,11 +67,10 @@ class DrawHandler{
 					string cardStr = drawMap.find(c.getSuit())->second[i];
 					char ch;
 					if (c.getRank() != Ten){
-						// This use of double maps is actually fucking awful. Maybe think of a cleaner way to do this?
-						ch = rankChar.find(rankToStr.find(c.getRank())->second)->second;
+						ch = rankToChar.find(c.getRank())->second;
 						replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 					} else {
-						// 10 will require a special case because it is 2 digits long
+						// 10 will require a special case because its length is 2.
 						if (i == 1){
 							if (c.getSuit() == Spade){
 								cardStr = "10 .  |";

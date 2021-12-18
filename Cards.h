@@ -27,20 +27,20 @@ map <Rank, string> rankToStr = {
 	{ King, "King" } 
 };
 
-map <string, char> rankChar = { 
+map <Rank, char> rankToChar = { 
 	// 10 will awkwardly be displayed as 'T' with ->second, but whatever.
 	// Just manually deal with it later. idk wtf to do with it right now
-	{"Ace", 'A'}, {"Two", '2'}, {"Three", '3'}, {"Four", '4'}, 
-	{"Five", '5'}, {"Six", '6'}, {"Seven", '7'}, {"Eight", '8'}, 
-	{"Nine", '9'}, {"Ten", 'T'}, {"Jack", 'J'}, {"Queen", 'Q'}, 
-	{"King", 'K'} 
+	{ Ace, 'A'}, { Two, '2'}, { Three, '3'}, {Four, '4'}, 
+	{ Five, '5'}, { Six, '6'}, { Seven, '7'}, {Eight, '8'}, 
+	{ Nine, '9'}, { Ten, 'T'}, {Jack, 'J'}, {Queen, 'Q'}, 
+	{ King, 'K'} 
 };
 
 map <Rank, int> rankVal = {
-	{Two, 2}, {Three, 3}, {Four, 4}, {Five, 5}, 
-	{Six, 6}, {Seven, 7}, {Eight, 8}, {Nine, 9}, 
-	{Ten, 10}, {Jack, 11}, {Queen, 12}, {King, 13},
-	{Ace, 14}
+	{ Two, 2 }, { Three, 3 }, { Four, 4 }, { Five, 5 }, 
+	{ Six, 6 }, { Seven, 7 }, { Eight, 8 }, { Nine, 9 }, 
+	{ Ten, 10 }, { Jack, 11 }, { Queen, 12 }, { King, 13 },
+	{ Ace, 14 }
 };
 
 class Card{

@@ -134,6 +134,7 @@ class DrawHandler{
 							if (i == 1){
 								cardStr = "|10";
 							}
+
 						}
 						outStr += cardStr;
 					}
@@ -169,7 +170,21 @@ class DrawHandler{
 							replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 						} else {
 							if (i == 1){
-								cardStr = "|10";
+								if (c.getSuit() == Spade){
+									cardStr = ".  |";
+								} 
+								if (c.getSuit() == Diamond){
+									cardStr = "^  |";
+								}
+								if (c.getSuit() == Club){
+									cardStr = "_  |";
+								}
+								if (c.getSuit() == Heart){
+									cardStr = " _ |";
+								}
+							}
+							if (i == 5){
+								cardStr = "_10|";
 							}
 						}
 						outStr += cardStr;
@@ -209,77 +224,77 @@ class DrawHandler{
 		}
 		cout << outStr << endl;
 	}
-	// Draw no stacked
-	void drawTest1(){
-		cout << "Draw test 1" << endl;
-		vector<Card> hand;
-		Card c1, c2, c3, c4, c5, c6, c7, c8;
-		c1.setCard(Ace, Spade); 
-		c2.setCard(Ace, Heart);	
-		c3.setCard(Ace, Diamond);
-		c4.setCard(Ace, Club);
-		c5.setCard(Ten, Spade);
-		c6.setCard(Ten, Heart);	
-		c7.setCard(Ten, Diamond);
-		c8.setCard(Ten, Club); 
-		hand.push_back(c1);
-		hand.push_back(c2);
-		hand.push_back(c3);
-		hand.push_back(c4);
-		hand.push_back(c5);
-		hand.push_back(c6);
-		hand.push_back(c7);
-		hand.push_back(c8);
-		DrawHandler Drawer;
-		Drawer.drawCards(hand, 6, 4);
-	}
-	// Draw stacked, RHS on top with some cards face down
-	void drawTest2(){
-		cout << "Draw test 2 (drawStacked RHS)" << endl;
-		vector<Card> hand;
-		Card c1, c2, c3, c4, c5, c6, c7, c8;
-		c1.setCard(Ace, Spade); 
-		c2.setCard(Ace, Heart);	
-		c3.setCard(Ace, Diamond);
-		c4.setCard(Ace, Club);
-		c5.setCard(Ten, Spade);
-		c6.setCard(Ten, Heart);	
-		c7.setCard(Ten, Diamond);
-		c8.setCard(Ten, Club); 
-		hand.push_back(c1);
-		hand.push_back(c2);
-		hand.push_back(c3);
-		hand.push_back(c4);
-		hand.push_back(c5);
-		hand.push_back(c6);
-		hand.push_back(c7);
-		hand.push_back(c8);
-		DrawHandler Drawer;
-		Drawer.drawStacked(hand, 6, 4);
-	}
-	// Draw stacked, LHS on top, with some cards face down
-	void drawTest3(){
-		cout << "Draw test 3 (drawStacked LHS)" << endl;
-		vector<Card> hand;
-		Card c1, c2, c3, c4, c5, c6, c7, c8;
-		c1.setCard(Ace, Spade); 
-		c2.setCard(Ace, Heart);	
-		c3.setCard(Ace, Diamond);
-		c4.setCard(Ace, Club);
-		c5.setCard(Ten, Spade);
-		c6.setCard(Ten, Heart);	
-		c7.setCard(Ten, Diamond);
-		c8.setCard(Ten, Club); 
-		hand.push_back(c1);
-		hand.push_back(c2);
-		hand.push_back(c3);
-		hand.push_back(c4);
-		hand.push_back(c5);
-		hand.push_back(c6);
-		hand.push_back(c7);
-		hand.push_back(c8);
-		DrawHandler Drawer;
-		Drawer.drawStacked(hand, 6, 4, false);
-	}
 };
 
+// Draw no stacked
+void drawTest1(){
+	cout << "Draw test 1" << endl;
+	vector<Card> hand;
+	Card c1, c2, c3, c4, c5, c6, c7, c8;
+	c1.setCard(Ace, Spade); 
+	c2.setCard(Ace, Heart);	
+	c3.setCard(Ace, Diamond);
+	c4.setCard(Ace, Club);
+	c5.setCard(Ten, Spade);
+	c6.setCard(Ten, Heart);	
+	c7.setCard(Ten, Diamond);
+	c8.setCard(Ten, Club); 
+	hand.push_back(c1);
+	hand.push_back(c2);
+	hand.push_back(c3);
+	hand.push_back(c4);
+	hand.push_back(c5);
+	hand.push_back(c6);
+	hand.push_back(c7);
+	hand.push_back(c8);
+	DrawHandler Drawer;
+	Drawer.drawCards(hand, 6, 4);
+}
+// Draw stacked, RHS on top with some cards face down
+void drawTest2(){
+	cout << "Draw test 2 (drawStacked RHS)" << endl;
+	vector<Card> hand;
+	Card c1, c2, c3, c4, c5, c6, c7, c8;
+	c1.setCard(Ace, Spade); 
+	c2.setCard(Ace, Heart);	
+	c3.setCard(Ace, Diamond);
+	c4.setCard(Ace, Club);
+	c5.setCard(Ten, Spade);
+	c6.setCard(Ten, Heart);	
+	c7.setCard(Ten, Diamond);
+	c8.setCard(Ten, Club); 
+	hand.push_back(c1);
+	hand.push_back(c2);
+	hand.push_back(c3);
+	hand.push_back(c4);
+	hand.push_back(c5);
+	hand.push_back(c6);
+	hand.push_back(c7);
+	hand.push_back(c8);
+	DrawHandler Drawer;
+	Drawer.drawStacked(hand, 6, 4);
+}
+// Draw stacked, LHS on top, with some cards face down
+void drawTest3(){
+	cout << "Draw test 3 (drawStacked LHS)" << endl;
+	vector<Card> hand;
+	Card c1, c2, c3, c4, c5, c6, c7, c8;
+	c1.setCard(Ace, Spade); 
+	c2.setCard(Ace, Heart);	
+	c3.setCard(Ace, Diamond);
+	c4.setCard(Ace, Club);
+	c5.setCard(Ten, Spade);
+	c6.setCard(Ten, Heart);	
+	c7.setCard(Ten, Diamond);
+	c8.setCard(Ten, Club); 
+	hand.push_back(c1);
+	hand.push_back(c2);
+	hand.push_back(c3);
+	hand.push_back(c4);
+	hand.push_back(c5);
+	hand.push_back(c6);
+	hand.push_back(c7);
+	hand.push_back(c8);
+	DrawHandler Drawer;
+	Drawer.drawStacked(hand, 6, 4, false);
+}

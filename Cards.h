@@ -70,14 +70,17 @@ class Card{
 	friend ostream& operator<<(ostream& out, Card c);
 	// Allow direct printing of card vectors
 	friend ostream& operator<<(ostream& out, vector<Card> cardVect);
+
+	/*
 	// Allow using + to add two cards together to create a card vector
 	friend vector<Card> operator+(Card a, Card b);
+	*/
 	// Allow using + to add a card to an existing card vector
-	friend vector<Card> operator+(vector<Card> cardVect, Card c);
-	// Allow using + to add a pair of Rank and Suit to a card vector
-	friend vector<Card> operator+(vector<Card> cardVect, pair<Rank, Suit> cardPair);
+	friend vector<Card> operator+=(vector<Card> cardVect, Card c);
+
 	// Allow combining of two Card vectors
-	friend vector<Card> operator+(vector<Card>, vector<Card>);
+	friend vector<Card> operator+=(vector<Card>, vector<Card>);
+
 	// Allow using - to remove n amount of cards from the top of the deck
 	friend vector<Card> operator-(vector<Card> cardVect, int n);
 	// Allow remove Card vector by Card object's Suit and rank. (Must use make_pair)

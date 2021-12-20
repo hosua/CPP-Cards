@@ -12,7 +12,9 @@ int main(){
 	srand(time(0)); 
 	vector<Card> deck = CH.createDeck();
 	vector<Card> hand = CH.drawCards(deck, 5);
-	hand + make_pair(Ace, Spade);
+	Card c1;
+	c1.setCard(Ace, Spade);
+	hand += c1;
 	cout << hand << endl;
 	
 	

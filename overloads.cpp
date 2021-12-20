@@ -19,13 +19,6 @@ ostream& operator<<(ostream& out, vector<Card> cardVect){
         out << DH.drawStacked(cardVect, -1, 0, false);
     return out;
 }
-// Allow using + to add two cards together to create a card vector
-vector<Card> operator+(Card a, Card b){
-	vector<Card> cardVect;
-	cardVect.push_back(b);
-	cardVect.push_back(a);
-	return cardVect;
-}
 // Allow using += to add a card to an existing card vector
 void operator+(vector<Card> &cardVect, Card c){
 	cardVect.push_back(c);

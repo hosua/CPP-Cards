@@ -48,36 +48,74 @@ class Card{
 	private:
 		Rank rank;
 		Suit suit;
+		pair<Rank, Suit> rsPair;
 
 	public:
+		/* Constructors */
 		// Constructor with no parameters
 		Card(){
 			this->rank = NullR;
 			this->suit = NullS;
+			this->rsPair = make_pair(rank, suit);
 		}
 		// Constructor with parameters
 		Card(Rank r, Suit s){
 			this->rank = r;
 			this->suit = s;
+			this->rsPair = make_pair(rank, suit);
 		}
 
+		/* Setter */
 		void setCard(Rank r, Suit s){
 			this->rank = r;	
 			this->suit = s;
 		}
 
+		/* Getters */
+		// Get card's rank
 		Rank getRank(){
 			return this->rank;	
 		}
 
+		// Get card's suit
 		Suit getSuit(){
 			return this->suit;
 		}
 
-		void printStr(){
-			cout << rankToStr.find(this->rank)->second << " of " << this->suit << "s" << endl;	
+		// Get both the Card object's rank and suit in a pair<Rank, Suit>
+		pair<Rank, Suit> getPair(){
+			return make_pair(this->rank, this->suit);
 		}
-		
+
+		// Get the Card object's information as text and return it as a string.
+		string getInfo(){
+			return rankToStr.find(this->rank)->second + " of " + suitToStr.find(this->suit)->second + "s";	
+		}
+
+		// Print the Card object's information as text.
+		void printInfo(){
+			cout << getInfo();
+		}
+
+		// Check if two Card Objects have the same Suit and Rank
+		bool samePair(Card c){
+			if (this->rsPair == c.getPair())
+				return true;
+			return false;
+		}
+		// Check if two Card Objects have the same Suit 
+		bool sameSuit(Card c){
+			if (this->suit == c.getSuit())
+				return true;
+			return false;
+		}
+		// Check if two Card Objects have the same Rank
+		bool sameRank(Card c){
+			if (this->rank == c.getRank())
+				return true;
+			return false;
+		}
+
 		// Directly print of Card objects through output stream with '<<'
 		friend ostream& operator<<(ostream& out, Card c);
 		// Directly print of Card vectors through output stream with '<<'
@@ -92,6 +130,12 @@ class Card{
 		// Combine two Card vectors 
 		// ***Directly modifies the vector being appended to.
 		friend void operator+=(vector<Card> &a, vector<Card> b);
+
+		// Remove the first instance of Card object found in the vector if it exists.
+		// ** Directly modifies the vector 
+		friend void operator-=(vector<Card> &cardVect, Card c);
+
+		friend string operator-(vector<Card> cardVect, int n);
 
 
 	

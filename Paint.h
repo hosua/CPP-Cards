@@ -63,6 +63,7 @@ string paintCards(vector<Card> cardVect, int numDrawn=-1, int facedown=0){
 	if (numDrawn < 0 || numDrawn > cardVect.size()) numDrawn = cardVect.size(); 		
 	if (facedown < 0) facedown = 0;
 	if (facedown > cardVect.size()) facedown = cardVect.size();
+	if (facedown > numDrawn) facedown = numDrawn;
 	string outStr;
 	// By default numDrawn will just be the vector size
 	if (numDrawn == -1) numDrawn = cardVect.size(); 		

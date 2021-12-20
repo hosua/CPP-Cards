@@ -66,6 +66,23 @@ class Card{
 		void print(){
 			cout << rankToStr.find(this->rank)->second << " of " << this->suit << "s" << endl;	
 		}
+	// Allow direct printing of cards through stream
+	friend ostream& operator<<(ostream& out, Card c);
+	// Allow direct printing of card vectors
+	friend ostream& operator<<(ostream& out, vector<Card> cardVect);
+	// Allow using + to add two cards together to create a card vector
+	friend vector<Card> operator+(Card a, Card b);
+	// Allow using + to add a card to an existing card vector
+	friend vector<Card> operator+(vector<Card> cardVect, Card c);
+	// Allow using + to add a pair of Rank and Suit to a card vector
+	friend vector<Card> operator+(vector<Card> cardVect, pair<Rank, Suit> cardPair);
+	// Allow combining of two Card vectors
+	friend vector<Card> operator+(vector<Card>, vector<Card>);
+	// Allow using - to remove n amount of cards from the top of the deck
+	friend vector<Card> operator-(vector<Card> cardVect, int n);
+	// Allow remove Card vector by Card object's Suit and rank. (Must use make_pair)
+	friend vector<Card> operator-(vector<Card> cardVect, pair<Rank, Suit> cardPair);
+	
 };
 
 class CardHandler{
@@ -73,7 +90,6 @@ class CardHandler{
 		void shuffleCards(vector<Card> &cards){
 			random_shuffle(begin(cards), end(cards));
 		}
-
 		vector <Card> createDeck(int n=1, bool shuffle=true){ 
 			vector <Card> deck;
 			Card c;
@@ -91,7 +107,7 @@ class CardHandler{
 			return deck;
 			}
 
-		vector<Card> drawCards(vector<Card> &cards, int n){
+		vector<Card> drawCards(vector<Card> &cards, int n=1){
 			vector <Card> c;
 			int a = 0;
 			while (a < n){

@@ -59,7 +59,7 @@ class DrawHandler{
 	public:
 		// Draws an array of cards in ASCII
 		// Cards are fully displayed and not on top of each other.
-		void drawCards(vector<Card> cardVect, int numDrawn=-1, int facedown=0){ 			
+		string drawCards(vector<Card> cardVect, int numDrawn=-1, int facedown=0){ 			
 			// Bound checks
 			if (numDrawn < 0 || numDrawn > cardVect.size()) numDrawn = cardVect.size(); 		
 			if (facedown < 0) facedown = 0;
@@ -102,12 +102,13 @@ class DrawHandler{
 				}
 				outStr += "\n";
 			}		
-			cout << outStr << endl;
+			//cout << outStr << endl;
+			return outStr;
 		}
 		// Won't display any face down cards.
 		// Like drawCards, except the cards will be drawn as if they are on top of each other.
 		// topRHS=true will mean that the top card of the card vector will be on the right side.
-		void drawStacked(vector<Card> cardVect, int numDrawn=-1, int facedown=0, bool topRHS=true){ // Draws an array of cards in ASCII
+		string drawStacked(vector<Card> cardVect, int numDrawn=-1, int facedown=0, bool topRHS=true){ // Draws an array of cards in ASCII
 			// Bound checks
 			if (numDrawn < 0 || numDrawn > cardVect.size()) numDrawn = cardVect.size(); 		
 			if (facedown < 0) facedown = 0;
@@ -177,7 +178,6 @@ class DrawHandler{
 					}
 					outStr += "\n";
 				}		
-				cout << outStr << endl;
 			} else {  // Left orientation
 				for (int i = 0; i < CARD_HEIGHT; i++){
 					// Draw the first card
@@ -236,12 +236,13 @@ class DrawHandler{
                     }
 					outStr += "\n";
 				}		
-				cout << outStr << endl;
 			}
+			//cout << outStr << endl;
+			return outStr;
 		}
 
 	// Draw a single Card object
-	void drawSingle(Card c){
+	string drawSingle(Card c){
 		string outStr, cardStr;
 		for (int i = 0; i < CARD_HEIGHT; i++){
 			cardStr = drawMap.find(c.getSuit())->second[i];
@@ -264,7 +265,8 @@ class DrawHandler{
 			}
 			outStr += cardStr + "\n";
 		}
-		cout << outStr << endl;
+		//cout << outStr << endl;
+		return outStr;
 	}
 };
 

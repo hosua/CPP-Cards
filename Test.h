@@ -73,9 +73,10 @@ void testProg3(){
 			hand = CH.drawCards(deck, numDrawn);
 			cout << "Drew " << numDrawn << " cards." << endl;
 		}
+		if (!dontDraw && numDrawn > 0) DH.drawStacked(hand, numDrawn, numDown, true);
 		if (!dontDraw && numDrawn > 0) DH.drawStacked(hand, numDrawn, numDown, false);
 		numDrawn = rand() % NUM_CARDS+1;
-		numDown = rand() % NUM_CARDS+1;
+		numDown = rand() % numDrawn+1;
 		
 		this_thread::sleep_for(TIME_CONST);
 	}

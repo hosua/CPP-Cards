@@ -19,7 +19,11 @@ ostream& operator<<(ostream& out, vector<Card> cardVect){
         out << DH.drawStacked(cardVect, -1, 0, false);
     return out;
 }
-
+// Combine two Card vectors (without modifying either of the original vectors)
+vector<Card> operator+(vector<Card> a, vector<Card> b){
+    a.insert(a.end(), b.begin(), b.end());
+    return a;
+}
 
 void drawTest(){
 	drawTest1();

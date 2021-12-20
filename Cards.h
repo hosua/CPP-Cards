@@ -50,15 +50,17 @@ class Card{
 		Suit suit;
 
 	public:
+		// Constructor with no parameters
 		Card(){
 			this->rank = NullR;
 			this->suit = NullS;
 		}
-		
+		// Constructor with parameters
 		Card(Rank r, Suit s){
 			this->rank = r;
 			this->suit = s;
 		}
+
 		void setCard(Rank r, Suit s){
 			this->rank = r;	
 			this->suit = s;
@@ -72,50 +74,46 @@ class Card{
 			return this->suit;
 		}
 
-		void print(){
+		void printStr(){
 			cout << rankToStr.find(this->rank)->second << " of " << this->suit << "s" << endl;	
 		}
-	// Allow direct printing of cards through stream
-	friend ostream& operator<<(ostream& out, Card c);
-	// Allow direct printing of card vectors
-	friend ostream& operator<<(ostream& out, vector<Card> cardVect);
-	// Allow combining of two Card vectors
-	friend vector<Card> operator+(vector<Card>, vector<Card>);
+		// Allow direct printing of cards through stream
+		friend ostream& operator<<(ostream& out, Card c);
+		// Allow direct printing of card vectors
+		friend ostream& operator<<(ostream& out, vector<Card> cardVect);
+		// Combine two Card vectors (without modifying either of the original vectors)
+		friend vector<Card> operator+(vector<Card> a, vector<Card> b);
+		
 	
 };
 
-class CardHandler{
-	public:
-		void shuffleCards(vector<Card> &cards){
-			random_shuffle(begin(cards), end(cards));
-		}
-		vector <Card> createDeck(int n=1, bool shuffle=true){ 
-			vector <Card> deck;
-			Card c;
-			// Create deck of cards
-			for (int i = 0; i < n; i++){
-				for (auto itr = rankToStr.begin(); itr != rankToStr.end(); itr++){
-					for (auto its = suitToStr.begin(); its != suitToStr.end(); its++){
-						c.setCard(itr->first, its->first);
-						deck.push_back(c);
-					}
-				} 
+void shuffleCards(vector<Card> &cards){
+	random_shuffle(begin(cards), end(cards));
+}
+vector <Card> createDeck(int n=1, bool shuffle=true){ 
+	vector <Card> deck;
+	// Create deck of cards
+	for (int i = 0; i < n; i++){
+		for (auto itr = rankToStr.begin(); itr != rankToStr.end(); itr++){
+			for (auto its = suitToStr.begin(); its != suitToStr.end(); its++){
+				deck.push_back(Card(itr->first,its->first));
 			}
-			cout << "Created deck of " << deck.size() << " cards." << endl;
-			if (shuffle) shuffleCards(deck);
-			return deck;
-			}
+		} 
+	}
+	cout << "Created deck of " << deck.size() << " cards." << endl;
+	if (shuffle) shuffleCards(deck);
+	return deck;
+}
 
-		vector<Card> drawCards(vector<Card> &cards, int n=1){
-			vector <Card> c;
-			int a = 0;
-			while (a < n){
-				c.push_back(cards.back());
-				cards.pop_back();
-				a++;
-			}
-			return c;
-		}
+vector<Card> drawCards(vector<Card> &cards, int n=1){
+	vector <Card> c;
+	int a = 0;
+	while (a < n){
+		c.push_back(cards.back());
+		cards.pop_back();
+		a++;
+	}
+	return c;
+}
 
-};
 

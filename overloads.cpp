@@ -1,32 +1,37 @@
-#include "Draw.h"
+#include "Paint.h"
 // Set which stack mode for when drawing multiple cards
 // stackMode can be "NONE", "LHS", or "RHS"
 const static string STACK_MODE = "LHS";
 
-DrawHandler DH;
-// Allows direct printing of Card objects
+// Directly print of Card objects through output stream with '<<'
 ostream& operator<<(ostream& out, Card c){
-	out << DH.drawSingle(c);
+	out << paintSingle(c);
 	return out;
 }
-// Allow direct printing of Card vectors
+// Directly print of Card vectors through output stream with '<<'
 ostream& operator<<(ostream& out, vector<Card> cardVect){
     if (STACK_MODE == "NONE")
-        out << DH.drawCards(cardVect);
+        out << drawCards(cardVect);
     else if (STACK_MODE == "RHS")
-        out << DH.drawStacked(cardVect);
+        out << paintStacked(cardVect);
     else if (STACK_MODE == "LHS")
-        out << DH.drawStacked(cardVect, -1, 0, false);
+        out << paintStacked(cardVect, -1, 0, false);
     return out;
 }
-// Combine two Card vectors (without modifying either of the original vectors)
+
+// Append a Card object to a deck with '+='
+void operator+=(vector<Card> &cardVect, Card c);
+
+// Return two Card vectors combined into one.
+// ***Does not modify original vector values.
 vector<Card> operator+(vector<Card> a, vector<Card> b){
     a.insert(a.end(), b.begin(), b.end());
     return a;
 }
-
-void drawTest(){
-	drawTest1();
-	drawTest2();
-	drawTest3();
+// Combine two Card vectors 
+// ** Directly modifies the vector being appended to.
+void operator+=(vector<Card> &a, vector<Card> b){
+    a.insert(a.end(), b.begin(), b.end());
 }
+
+

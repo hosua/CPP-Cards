@@ -12,10 +12,11 @@ int main(){
 	vector<Card> deck = createDeck();
 	vector<Card> hand = drawCards(deck, 5);
 
-	//hand.push_back(Card(King, Heart));
-
-	vector<Card> hand1 = drawCards(deck, 3);
-	cout << hand1+hand << endl;
+	vector<Card> hand1 = drawCards(deck);
+	hand1 += hand;
+	hand1.push_back(Card(King, Diamond));
+	//hand1 = hand + hand1;
+	cout << hand1 << endl;
 	
 	
 	//drawTest();

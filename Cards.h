@@ -77,13 +77,23 @@ class Card{
 		void printStr(){
 			cout << rankToStr.find(this->rank)->second << " of " << this->suit << "s" << endl;	
 		}
-		// Allow direct printing of cards through stream
-		friend ostream& operator<<(ostream& out, Card c);
-		// Allow direct printing of card vectors
-		friend ostream& operator<<(ostream& out, vector<Card> cardVect);
-		// Combine two Card vectors (without modifying either of the original vectors)
-		friend vector<Card> operator+(vector<Card> a, vector<Card> b);
 		
+		// Directly print of Card objects through output stream with '<<'
+		friend ostream& operator<<(ostream& out, Card c);
+		// Directly print of Card vectors through output stream with '<<'
+		friend ostream& operator<<(ostream& out, vector<Card> cardVect);
+
+		// Append a Card object to a deck with '+='
+		friend void operator+=(vector<Card> &cardVect, Card c);
+
+		// Return two Card vectors combined into one.
+		// ***Does not modify original vector values.
+		friend vector<Card> operator+(vector<Card> a, vector<Card> b);
+		// Combine two Card vectors 
+		// ***Directly modifies the vector being appended to.
+		friend void operator+=(vector<Card> &a, vector<Card> b);
+
+
 	
 };
 

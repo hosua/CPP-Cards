@@ -14,7 +14,7 @@ int main(){
 	vector<Card> hand = CH.drawCards(deck, 5);
 	Card c1;
 	c1.setCard(Ace, Spade);
-	hand += c1;
+	hand.push_back(c1);
 	cout << hand << endl;
 	
 	

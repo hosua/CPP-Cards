@@ -7,8 +7,8 @@
 
 using namespace std;
 
-enum Rank { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King};
-enum Suit { Diamond, Heart, Club, Spade };
+enum Rank { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, NullR};
+enum Suit { Diamond, Heart, Club, Spade, NullS};
 
 map <string, char> suitMap = { 
 	{ "Diamond", 'D' }, { "Club", 'C' }, 
@@ -50,6 +50,15 @@ class Card{
 		Suit suit;
 
 	public:
+		Card(){
+			this->rank = NullR;
+			this->suit = NullS;
+		}
+		
+		Card(Rank r, Suit s){
+			this->rank = r;
+			this->suit = s;
+		}
 		void setCard(Rank r, Suit s){
 			this->rank = r;	
 			this->suit = s;
@@ -70,21 +79,8 @@ class Card{
 	friend ostream& operator<<(ostream& out, Card c);
 	// Allow direct printing of card vectors
 	friend ostream& operator<<(ostream& out, vector<Card> cardVect);
-
-	/*
-	// Allow using + to add two cards together to create a card vector
-	friend vector<Card> operator+(Card a, Card b);
-	*/
-	// Allow using + to add a card to an existing card vector
-	friend vector<Card> operator+=(vector<Card> cardVect, Card c);
-
 	// Allow combining of two Card vectors
-	friend vector<Card> operator+=(vector<Card>, vector<Card>);
-
-	// Allow using - to remove n amount of cards from the top of the deck
-	friend vector<Card> operator-(vector<Card> cardVect, int n);
-	// Allow remove Card vector by Card object's Suit and rank. (Must use make_pair)
-	friend vector<Card> operator-(vector<Card> cardVect, pair<Rank, Suit> cardPair);
+	friend vector<Card> operator+(vector<Card>, vector<Card>);
 	
 };
 

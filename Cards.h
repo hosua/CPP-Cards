@@ -192,6 +192,7 @@ inline vector <Card> createDeck(int numDecks=1, bool shuffle=true, bool verbose=
 		cout << "Deck was created." << endl;
 	if (shuffle) {
 		// Shuffling animation
+		random_shuffle(begin(animDeck), end(animDeck));
 		for (int n = 0; n < FRAMES; n++){
 			if (verbose)
 				cout << "Shuffling the deck..." << endl;

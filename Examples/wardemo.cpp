@@ -16,6 +16,9 @@ Card getWinner(Card a, Card b){
         return Card(NullR, NullS);
 }
 int main(){
+	// Be sure to start your program with this for rng to work properly
+	// The seed will be based on the second the program is executed on.
+	srand(time(0)); 
     int pts = 2;
     // Declare map to determine winner card
     for (auto itr = next(rankToStr.begin()); itr != rankToStr.end(); itr++){
@@ -57,9 +60,13 @@ int main(){
 
             case Revealing: // Players reveal their cards
                 cout << "Revealing cards..." << endl;
+                cout << player-1 << endl; // Show player & computer's card, face down
+                cout << computer-1 << endl;
                 this_thread::sleep_for(TIME_CONST);
-                cout << "Player: " << playerScore << " points\n" << player << endl;
-                cout << "Computer: " << computerScore << " points\n" << computer << endl;
+                cout << "Player: " << playerScore << " points" << endl;
+                cout << player << endl; // Show player & computer's card, face up
+                cout << "Computer: " << computerScore << " points" << endl;
+                cout << computer << endl; 
                 this_thread::sleep_for(TIME_CONST*2);
                 state = Calculating;
                 break;

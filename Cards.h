@@ -12,10 +12,9 @@ using namespace std;
 enum Rank { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, NullR};
 enum Suit { Diamond, Heart, Club, Spade, NullS};
 
-// This function will clear the output from the console. completely
-// If you are not on GNU/Linux or Mac, you will have to use system("cls") instead.
-inline void clear() // https://stackoverflow.com/questions/6486289/how-can-i-clear-console
-{ 
+// Clear console output completely
+// https://stackoverflow.com/questions/6486289/how-can-i-clear-console
+inline void clear() { 
 #if defined _WIN32
     system("cls");
     //clrscr(); // including header file : conio.h

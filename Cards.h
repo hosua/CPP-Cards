@@ -205,6 +205,8 @@ inline vector <Card> createDeck(int numDecks=1, bool shuffle=true, bool verbose=
 			clear();
 		}
 		random_shuffle(begin(deck), end(deck));
+		if (verbose)
+			cout << "The deck was shuffled." << endl;
 	}
 	this_thread::sleep_for(FRAME_LENGTH*15);
 	
@@ -231,7 +233,7 @@ inline void shuffleCards(vector<Card> &cards, bool verbose=true){
 	}
 	random_shuffle(begin(cards), end(cards));
 	if (verbose)
-		cout << "Deck has been shuffled." << endl;
+		cout << "The cards were shuffled." << endl;
 }
 inline vector<Card> drawCards(vector<Card> &cardVect, int numDrawn=1, bool verbose=true){
 	vector <Card> c;

@@ -63,6 +63,7 @@ int main(){
                 cout << player-1 << endl; // Show player & computer's card, face down
                 cout << computer-1 << endl;
                 this_thread::sleep_for(TIME_CONST);
+                clear();
                 cout << "Player: " << playerScore << " points" << endl;
                 cout << player << endl; // Show player & computer's card, face up
                 cout << "Computer: " << computerScore << " points" << endl;

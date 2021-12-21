@@ -1,5 +1,6 @@
-#include "Overloads.h"
+// This file and main.cpp should be compiled separately. This file has its own main function.
 
+#include "../Overloads.h"
 #include <chrono>
 #include <thread>
 
@@ -13,7 +14,7 @@ void paintTest1(){
 		hand.push_back(Card(Ace, its->first));
 		hand.push_back(Card(Ten, its->first));
 	}
-	paintCards(hand, 6, 4);
+	cout << paintCards(hand, 6, 4);
 }
 
 // Paint cards stacked, RHS on top with some cards face down
@@ -24,7 +25,7 @@ void paintTest2(){
 		hand.push_back(Card(Ace, its->first));
 		hand.push_back(Card(Ten, its->first));
 	}
-	paintStacked(hand, 6, 4);
+	cout << paintStacked(hand, 6, 4);
 }
 // Paint cards stacked, LHS on top, with some cards face down
 void paintTest3(){
@@ -34,13 +35,17 @@ void paintTest3(){
 		hand.push_back(Card(Ace, its->first));
 		hand.push_back(Card(Ten, its->first));
 	}
-	paintStacked(hand, 6, 4, false);
+	cout << paintStacked(hand, 6, 4, false);
 }
-
+void paintTest(){
+	paintTest1();
+	paintTest2();
+	paintTest3();
+}
 void testProg1(){
 	vector <Card> deck = createDeck(1);
 	shuffleCards(deck);
-	paintCards(deck, 3); // (Card vector, numFacedown, start, end)
+	cout << paintCards(deck, 3); // (Card vector, numFacedown, start, end)
 }
 
 // Endlessly draw cards and reset deck when insufficient cards are left 
@@ -65,7 +70,7 @@ void testProg2(){
 			hand = drawCards(deck, NUM_CARDS);
 			cout << "Drew " << NUM_CARDS << " cards." << endl;
 		}
-		if (!dontPaint) paintCards(hand);
+		if (!dontPaint) cout << hand << endl;
 		
 		
 		this_thread::sleep_for(TIME_CONST);
@@ -86,19 +91,18 @@ void testProg3(){
 	bool dontPaint;
 	while (true){ 
 		dontPaint = false;
-		cout << "Size: " << deck.size() << endl;
+		cout << "Cards remaining: " << deck.size() << endl;
 		if (deck.size() < NUM_CARDS && deck.size() != 0){
 			hand = drawCards(deck, deck.size());
-			cout << "Drew " << deck.size() << " cards." << endl;
+			cout << hand << endl;
 		} else if (deck.size() == 0){
 			deck = createDeck(NUM_DECKS);
 			dontPaint = true;
 		} else {
 			hand = drawCards(deck, numDrawn);
-			cout << "Drew " << numDrawn << " cards." << endl;
 		}
-		if (!dontPaint && numDrawn > 0) paintStacked(hand, numDrawn, numDown, true);
-		if (!dontPaint && numDrawn > 0) paintStacked(hand, numDrawn, numDown, false);
+		cout << "numDown: " << numDown << endl;
+		if (!dontPaint && numDrawn > 0) cout << paintStacked(hand, numDrawn, numDown, false);
 		numDrawn = rand() % NUM_CARDS+1;
 		numDown = rand() % numDrawn+1;
 		
@@ -107,8 +111,9 @@ void testProg3(){
 }
 
 int main(){
-	paintTest1();
-	paintTest2();
-	paintTest3();
-
+	paintTest();
+	//testProg1();
+	//testProg2();	
+	//testProg3();
+	
 }

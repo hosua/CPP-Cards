@@ -1,14 +1,13 @@
 // Ascii art made by ejm98, source: https://www.asciiart.eu/miscellaneous/playing-cards
-#include <string>
-#include <iostream>
 #include "Cards.h"
 
 using namespace std;
 /* The functions in this file handle converting the cards into ASCII form. */
+// In the context of this program, "paint" refers to the act of turning the cards into ASCII form.
 
 // The number of elements in the string arrays
 static const int CARD_HEIGHT = 6; 
-string spadeCard[] = {
+inline string spadeCard[] = {
 " _____ ",
 "|Z .  |",
 "| /.\\ |",
@@ -16,7 +15,7 @@ string spadeCard[] = {
 "|  |  |",
 "|____Z|"
 }; 
-string diamondCard[] = {
+inline string diamondCard[] = {
 " _____ ",
 "|Z ^  |",
 "| / \\ |",
@@ -24,7 +23,7 @@ string diamondCard[] = {
 "|  .  |",
 "|____Z|"
 };
-string clubCard[] = {
+inline string clubCard[] = {
 " _____ ",
 "|Z _  |",
 "| ( ) |",
@@ -32,7 +31,7 @@ string clubCard[] = {
 "|  |  |",
 "|____Z|"
 };
-string heartCard[] = {
+inline string heartCard[] = {
 " _____ ",
 "|Z_ _ |",
 "|( v )|",
@@ -40,7 +39,7 @@ string heartCard[] = {
 "|  .  |",
 "|____Z|"
 };
-string facedownCard[] = {
+inline string facedownCard[] = {
 " _____ ",
 "|\\\\~//|",
 "|}}:{{|",
@@ -49,7 +48,7 @@ string facedownCard[] = {
 "|//~\\\\|"
 };
 
-map<Suit,string*> drawMap = {
+inline map<Suit,string*> drawMap = {
 	{Spade, spadeCard}, 
 	{Diamond, diamondCard},
 	{Club, clubCard}, 
@@ -59,7 +58,7 @@ map<Suit,string*> drawMap = {
 
 // Draws an array of cards in ASCII
 // Cards are fully displayed and not on top of each other.
-string paintCards(vector<Card> cardVect, int numDrawn=-1, int facedown=0){ 			
+inline string paintCards(vector<Card> cardVect, int numDrawn=-1, int facedown=0){ 			
 	// Bound checks
 	if (numDrawn < 0 || numDrawn > cardVect.size()) numDrawn = cardVect.size(); 		
 	if (facedown < 0) facedown = 0;
@@ -109,7 +108,7 @@ string paintCards(vector<Card> cardVect, int numDrawn=-1, int facedown=0){
 // Won't display any face down cards.
 // Like drawCards, except the cards will be drawn as if they are on top of each other.
 // topRHS=true will mean that the top card of the card vector will be on the right side.
-string paintStacked(vector<Card> cardVect, int numDrawn=-1, int facedown=0, bool topRHS=true){ // Draws an array of cards in ASCII
+inline string paintStacked(vector<Card> cardVect, int numDrawn=-1, int facedown=0, bool topRHS=true){ // Draws an array of cards in ASCII
 	// Bound checks
 	if (numDrawn < 0 || numDrawn > cardVect.size()) numDrawn = cardVect.size(); 		
 	if (facedown < 0) facedown = 0;
@@ -243,26 +242,31 @@ string paintStacked(vector<Card> cardVect, int numDrawn=-1, int facedown=0, bool
 }
 
 // Draw a single Card object
-string paintSingle(Card c){
+inline string paintSingle(Card c){
 	string outStr, cardStr;
 	for (int i = 0; i < CARD_HEIGHT; i++){
 		cardStr = drawMap.find(c.getSuit())->second[i];
-		if (i == 1){
-			if (c.getSuit() == Spade){
-				cardStr = "10 .  |";
-			} 
-			if (c.getSuit() == Diamond){
-				cardStr = "10 ^  |";
+		if (c.getRank() == Ten){
+			if (i == 1){
+				if (c.getSuit() == Spade){
+					cardStr = "10 .  |";
+				} 
+				if (c.getSuit() == Diamond){
+					cardStr = "10 ^  |";
+				}
+				if (c.getSuit() == Club){
+					cardStr = "10 _  |";
+				}
+				if (c.getSuit() == Heart){
+					cardStr = "10_ _ |";
+				}
 			}
-			if (c.getSuit() == Club){
-				cardStr = "10 _  |";
+			if (i == 5){
+				cardStr = "|___10|";
 			}
-			if (c.getSuit() == Heart){
-				cardStr = "10_ _ |";
-			}
-		}
-		if (i == 5){
-			cardStr = "|___10|";
+		} else {
+			char ch = rankToChar.find(c.getRank())->second;
+			replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 		}
 		outStr += cardStr + "\n";
 	}

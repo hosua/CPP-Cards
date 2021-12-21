@@ -1,9 +1,10 @@
-// Ascii art made by ejm98 https://www.asciiart.eu/miscellaneous/playing-cards
+// Ascii art made by ejm98, source: https://www.asciiart.eu/miscellaneous/playing-cards
 #include <string>
 #include <iostream>
 #include "Cards.h"
 
 using namespace std;
+/* The functions in this file handle converting the cards into ASCII form. */
 
 // The number of elements in the string arrays
 static const int CARD_HEIGHT = 6; 

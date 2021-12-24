@@ -22,11 +22,11 @@ inline ostream& operator<<(ostream& out, Card c){
 }
 // Directly print Card vectors through output stream with '<<'
 inline ostream& operator<<(ostream& out, vector<Card> cardVect){
-    if (STACK_MODE == NONE)
+    if (STACK_MODE == NONE) // Unstacked
         out << paintCards(cardVect);
-    else if (STACK_MODE == RHS)
+    else if (STACK_MODE == RHS) // Top of stack on right side
         out << paintStacked(cardVect);
-    else if (STACK_MODE == LHS)
+    else if (STACK_MODE == LHS) // Top of stack on left side
         out << paintStacked(cardVect, -1, 0, false);
     return out;
 }

@@ -26,11 +26,6 @@ inline void clear() {
 #endif
 }
 
-inline map <string, char> suitMap = { 
-	{ "Diamond", 'D' }, { "Club", 'C' }, 
-	{ "Heart", 'H' }, { "Spade", 'S' }
-};
-
 inline map <Suit, string> suitToStr = {
 	{ Diamond, "Diamond" }, { Heart, "Heart" },
 	{ Club, "Club" }, { Spade, "Spade" }
@@ -52,14 +47,6 @@ inline map <Rank, char> rankToChar = {
 	{ King, 'K'} 
 };
 
-/*
-inline map <Rank, int> rankVal = {
-	{ Two, 2 }, { Three, 3 }, { Four, 4 }, { Five, 5 }, 
-	{ Six, 6 }, { Seven, 7 }, { Eight, 8 }, { Nine, 9 }, 
-	{ Ten, 10 }, { Jack, 11 }, { Queen, 12 }, { King, 13 },
-	{ Ace, 14 }
-}; */
-
 class Card{
 	private:
 		Rank rank;
@@ -74,7 +61,7 @@ class Card{
 			this->suit = NullS;
 			this->rsPair = make_pair(rank, suit);
 		}
-		// Constructor with parameters
+		// Constructor with Rank and Suit as parameters
 		Card(Rank r, Suit s){
 			this->rank = r;
 			this->suit = s;
@@ -82,18 +69,19 @@ class Card{
 		}
 
 		/* Setter */
+		// Set Rank and Suit
 		void setCard(Rank r, Suit s){
 			this->rank = r;	
 			this->suit = s;
 		}
 
 		/* Getters */
-		// Get card's rank
+		// Get Card object's Rank
 		Rank getRank(){
 			return this->rank;	
 		}
 
-		// Get card's suit
+		// Get Card object's suit
 		Suit getSuit(){
 			return this->suit;
 		}
@@ -108,7 +96,7 @@ class Card{
 			return rankToStr.find(this->rank)->second + " of " + suitToStr.find(this->suit)->second + "s";	
 		}
 
-		// Print the Card object's Suit and Rank as text.
+		// Print the Card object's Rank and Suit as text.
 		void printInfo(){
 			cout << getInfo();
 		}
@@ -169,6 +157,8 @@ extern string paintSingle(Card c);
 extern string paintCards(vector<Card> cardVect, int numDrawn, int facedown);
 // Draws a vector of cards using ASCII art, but with the cards stacked on top of each other.
 extern string paintStacked(vector<Card> cardVect, int numDrawn, int facedown, bool topRHS);
+// Animate deck shuffling
+extern void shuffleAnimation(bool verbose);
 
 // Will create and shuffle deck, and output text by default
 inline vector <Card> createDeck(int numDecks=1, bool shuffle=true, bool verbose=true){ 
@@ -190,48 +180,28 @@ inline vector <Card> createDeck(int numDecks=1, bool shuffle=true, bool verbose=
 	if (verbose) 
 		cout << "Deck was created." << endl;
 	if (shuffle) {
-		// Shuffling animation
-		random_shuffle(begin(animDeck), end(animDeck));
-		for (int n = 0; n < FRAMES; n++){
-			if (verbose)
-				cout << "Shuffling the deck..." << endl;
-			if (animDeck.empty())
-				animDeck = createDeck(2, true, false);
-			else {
-				cout << animDeck.back() << endl;
-				animDeck.pop_back();	
-			}
-			this_thread::sleep_for(FRAME_LENGTH);
-			clear();
-		}
 		random_shuffle(begin(deck), end(deck));
 		if (verbose)
-			cout << "The deck was shuffled." << endl;
+			shuffleAnimation(true); 
+		else
+			shuffleAnimation(false);
 	}
 	this_thread::sleep_for(FRAME_LENGTH*15);
 	
 	return deck;
 }
-
-inline void shuffleCards(vector<Card> &cards, bool verbose=true){
+// Shuffles the deck of cards
+inline void shuffleCards(vector<Card> &cards, bool animate=true, bool verbose=true){
 	const chrono::milliseconds FRAME_LENGTH(50); 
 	const int FRAMES = 52;
 	vector <Card> animDeck = createDeck(2, true, false);
 
 	// Shuffling animation
-	for (int n = 0; n < FRAMES; n++){
-		if (verbose)
-			cout << "Shuffling cards..." << endl;
-		if (animDeck.empty())
-			animDeck = createDeck(2, true, false);
-		else {
-			cout << animDeck.back() << endl;
-			animDeck.pop_back();	
-		}
-		this_thread::sleep_for(FRAME_LENGTH);
-		clear();
-	}
 	random_shuffle(begin(cards), end(cards));
+	if (verbose)
+		shuffleAnimation(true);
+	else 
+		shuffleAnimation(false);
 	if (verbose)
 		cout << "The cards were shuffled." << endl;
 }

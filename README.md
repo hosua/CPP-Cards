@@ -1,7 +1,6 @@
 # CPP-Cards
 Text-based card game engine in C++
 
-<<<<<<< HEAD
 Currently, I have made a small war game demo as an example of how an implementation using the engine may look. You can test it out by compiling ``Examples/wardemo.cpp``, and running the binary.
 
 This is currently a work in progress.
@@ -49,23 +48,23 @@ You can use ``card1.sameSuit(card2)`` to see if both have cards the same Suit.
 
 ## Functions
 
-``createDeck()`` can take 3 arguments. 
-``numDecks``, the number of 52-card decks that the Card vector will take (1 by default). 
-``shuffle``, shuffle the deck after creating it (true by default).
-``verbose``, output messages describing what is currently going on (true by default).
+``vector<Card> createDeck(numDecks=1, shuffle=true, verbose=true)`` can take 3 arguments. 
+This function will return a Card vector.
+``numDecks`` is the number of 52-card decks that the Card vector will take (1 by default). 
+``shuffle`` will shuffle the deck after creating it (true by default).
+``verbose`` will output messages describing what is currently going on (this will always be true by default).
 
 
-``shuffleCards()`` can take 3 arguments.
-``cards`` the card vector that you are shuffling (Typically, the deck, but can be any vector you want to use)
-``animate`` show shuffle animation, takes a few seconds to do, so you should turn it off while debugging.
-``verbose`` 
+``shuffleCards(cards, animate=true, verbose=true)`` can take 3 arguments. This function will modify a card vector directly.
+``cards`` is the card vector that you are shuffling (Typically, the deck, but can be any vector you want to use)
+``animate`` will show shuffle animation, takes a few seconds to do, so you should turn it off while debugging. (true by default)
+``verbose`` see previous verbose()
 
 
-``drawCards()`` can take 3 arguments
+
+``drawCards(cardVect, numDrawn=1, verbose=true)`` can take 3 arguments. This function will modify a vector directly and return another one (the cards that were "drawn").
+``cardVect`` is the card vector that is being drawn from.
+``numDrawn`` is the number of cards drawn from the card vector.
+``verbose`` see previous verbose()
 
 To be continued...
-=======
-Currently, I have made a small war game demo as an example of how an implementation using the engine may look. You can test it out by compiling Examples/wardemo.cpp, and running the binary.
-
-This is currently a work in progress, so currently it won't have any documentation. I will document it once I finalize everything.
->>>>>>> af4eabc2e4a5371601c20eed79c6136b6c52f211

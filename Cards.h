@@ -123,15 +123,24 @@ class Card{
 		/* Overload declarations */
 		// Directly print Card objects through output stream with '<<'
 		friend ostream& operator<<(ostream& out, Card c);
+
 		// Directly print Card vectors through output stream with '<<'
 		friend ostream& operator<<(ostream& out, vector<Card> cardVect);
 
+		// Return a Card object added to a Card vector
+		// ***Does not modify original vector
+		friend vector<Card> operator+(vector<Card> cardVect, Card c);
+		// Reversed
+		friend vector<Card> operator+(Card c, vector<Card> cardVect);
+		// Return a vector made from 2 card objects
+		friend vector<Card> operator+(Card a, Card b);
 		// Append a Card object to a deck with '+='
 		friend void operator+=(vector<Card> &cardVect, Card c);
 
 		// Return two Card vectors combined into one.
 		// ***Does not modify original vector
 		friend vector<Card> operator+(vector<Card> a, vector<Card> b);
+
 		// Combine two Card vectors 
 		// ***Directly modifies the vector
 		friend void operator+=(vector<Card> &a, vector<Card> b);
@@ -194,14 +203,14 @@ inline vector <Card> createDeck(int numDecks=1, bool shuffle=true, bool verbose=
 inline void shuffleCards(vector<Card> &cards, bool animate=true, bool verbose=true){
 	const chrono::milliseconds FRAME_LENGTH(50); 
 	const int FRAMES = 52;
-	vector <Card> animDeck = createDeck(2, true, false);
-
-	// Shuffling animation
 	random_shuffle(begin(cards), end(cards));
-	if (verbose)
-		shuffleAnimation(true);
-	else 
-		shuffleAnimation(false);
+	// Shuffling animation
+	if (animate){
+		if (verbose)
+			shuffleAnimation(true);
+		else 
+			shuffleAnimation(false);
+	}
 	if (verbose)
 		cout << "The cards were shuffled." << endl;
 }

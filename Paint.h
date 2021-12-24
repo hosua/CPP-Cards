@@ -111,8 +111,8 @@ inline string paintCards(vector<Card> cardVect, int numDrawn=-1, int facedown=0)
 	return outStr;
 }
 /* Won't display any face down cards.
-Like drawCards, except the cards will be drawn as if they are on top of each other.
-topRHS=true will mean that the top card of the card vector will be on the right side.
+Like paintCards, except the cards will be painted as if they are stacked on top of each other.
+topRHS=true will mean that the top card of the stack will be on the right side.
 */
 inline string paintStacked(vector<Card> cardVect, int numDrawn=-1, int facedown=0, bool topRHS=true){ // Draws an array of cards in ASCII
 	// Bound checks
@@ -186,15 +186,16 @@ inline string paintStacked(vector<Card> cardVect, int numDrawn=-1, int facedown=
 		}		
 	} else {  // Left orientation
 		for (int i = 0; i < CARD_HEIGHT; i++){
-			// Draw the first card
+			// Paint the first card 
 			c = cardVect[0];
-			// Make sure we actually have any cards to draw
+			// Make sure we actually have any cards to paint
 			if (numDrawn != 0){
-				if (facedown == cardVect.size() || facedown == numDrawn)
+				if (facedown == cardVect.size() || facedown == numDrawn){
 					cardStr = facedownCard[i].substr(0,3);
-				else {
+				} else {
 					cardStr = drawMap.find(c.getSuit())->second[i].substr(0,3);
 					if (c.getRank() != Ten){
+						ch = rankToChar.find(c.getRank())->second;
 						replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 					} else {
 						if (i == 1){
@@ -270,14 +271,13 @@ inline string paintSingle(Card c){
 			if (i == 5){
 				cardStr = "|___10|";
 			}
-	} else {
+		} else {
 			char ch = rankToChar.find(c.getRank())->second;
 			replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 		}
 	
 	outStr += cardStr + "\n";
 	}
-	//cout << outStr << endl;
 	return outStr;
 }
 

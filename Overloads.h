@@ -31,6 +31,19 @@ inline ostream& operator<<(ostream& out, vector<Card> cardVect){
     return out;
 }
 
+// Return a Card object added to a Card vector
+// ***Does not modify original vector
+inline vector<Card> operator+(vector<Card> cardVect, Card c){
+    vector<Card> r = cardVect;
+    r.push_back(c);
+    return r;
+}
+// Reversed. This way of inserting is much less efficient and should not be used often
+inline vector<Card> operator+(Card c, vector<Card> cardVect){
+    cardVect.insert(cardVect.begin(), c); // O(n) operation
+    return cardVect;
+};
+
 // Append a Card object to a Card vector with '+='
 inline void operator+=(vector<Card> &cardVect, Card c){
     cardVect.push_back(c);
@@ -43,6 +56,12 @@ inline vector<Card> operator+(vector<Card> a, vector<Card> b){
     a.insert(a.end(), b.begin(), b.end());
     return a;
 }
+
+// Return a vector made from 2 card objects
+inline vector<Card> operator+(Card a, Card b){
+    return vector<Card> {a, b};
+}
+
 // Combine two Card vectors 
 // ** Directly modifies the vector of the left operand
 inline void operator+=(vector<Card> &a, vector<Card> b){
@@ -62,14 +81,19 @@ inline void operator+=(vector<Card> &a, vector<Card> b){
 // Remove the first instance of Card object found in the vector if it exists.
 // ** Directly modifies the vector of the left operand
 inline void operator-=(vector<Card> &cardVect, Card c){
+    bool found = false;
     for (int i = 0; i < cardVect.size(); i++){
         Card itc = cardVect[i];
         if (itc.getPair() == c.getPair()){
             cardVect.erase(cardVect.begin()+i);
-            cout << "Removed " << cardVect[i].getInfo() << " from Card vector." << endl;
+            if (verboseOverloads)
+                cout << "Removed " << cardVect[i].getInfo() << " from Card vector." << endl;
+            found = true;
             break;
         }
     }
+    if (!found && verboseOverloads)
+        cout << "Did not find " << c.getInfo() << endl;
 }
 
 // Subtracting an int, n from a Card vector will return the painted cards with n-cards facedown. 

@@ -96,6 +96,53 @@ inline void operator-=(vector<Card> &cardVect, Card c){
         cout << "Did not find " << c.getInfo() << endl;
 }
 
+// Remove the first instance of all cards in vector b from vector a. 
+// ** Directly modifies the Card vector
+inline void operator-=(vector<Card> &a, vector<Card> b){
+    for (int i = 0; i < b.size(); i++){
+        for (int j = 0; j < a.size(); j++){
+            if (a[j].getPair() == b[i].getPair()){
+                Card c = a[j];
+                a.erase(a.begin()+j);
+                if (verboseOverloads)
+                    cout << "Removed " << c.getInfo() << " from Card vector." << endl;
+                break;
+            }
+        }
+    }
+}
+
+// Return the  card Vector, "minus" the card specified. 
+// Only removes the first instance of the card if multiple exist.
+// ** Does not directly modify the Card vector
+inline vector<Card> operator-(vector<Card> cardVect, Card c){
+    bool found = false;
+    for (int i = 0; i < cardVect.size(); i++){
+        Card itc = cardVect[i];
+        if (itc.getPair() == c.getPair()){
+            cardVect.erase(cardVect.begin()+i);
+            found = true;
+            break;
+        }
+    }
+    if (!found && verboseOverloads)
+        cout << "Did not find " << c.getInfo() << endl;
+    return cardVect;
+}
+// Return the Card vector a, minus all the cards in Card vector b that are found in a.
+// ** Does not directly modify the Card vector
+inline vector<Card> operator-(vector<Card> a, vector<Card> b){
+    for (int i = 0; i < b.size(); i++){
+        for (int j = 0; j < a.size(); j++){
+            if (a[j].getPair() == b[i].getPair()){
+                a.erase(a.begin()+j);
+                break;
+            }
+        }
+    }
+    return a;
+}
+
 // Subtracting an int, n from a Card vector will return the painted cards with n-cards facedown. 
 // Example use: 
 // cout << cardVect-2 << endl;

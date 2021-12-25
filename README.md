@@ -5,6 +5,11 @@ Currently, I have made a small war game demo as an example of how an implementat
 
 This is currently a work in progress.
 
+TO DO:
+- Finish readme
+- Ensure no bugs are in newly implemented overloads
+- Create some examples to show the implementation of the engine
+
 # Some notes about the card game engine
 
 ## Cards.h
@@ -27,13 +32,13 @@ You can also initialize an empty card ``Card c = Card()``. This will automatical
 
 #### Getting 
 
-You can use ``getRank()`` and ``getSuit()`` to get Rank and Suit.
+You can use ``card.getRank()`` and ``card.getSuit()`` to get Rank and Suit.
 
-You can use ``getPair()`` to get a ``std::pair`` of the Rank and Suit.
+You can use ``card.getPair()`` to get a ``std::pair`` of the Rank and Suit.
 
-You can use ``getInfo()`` to return the cards rank in suit in the form of "Rank of Suit" (i.e, Ace of Spades).
+You can use ``card.getInfo()`` to return the cards rank in suit in the form of "Rank of Suit" (i.e, Ace of Spades).
 
-You can use ``printInfo()``, which just prints out what ``getInfo()`` returns.
+You can use ``card.printInfo()``, which just prints out what ``getInfo()`` returns.
 
 
 #### Compare functions
@@ -50,21 +55,21 @@ You can use ``card1.sameSuit(card2)`` to see if both have cards the same Suit.
 
 ``vector<Card> createDeck(numDecks=1, shuffle=true, verbose=true)`` can take 3 arguments. 
 This function will return a Card vector.
-``numDecks`` is the number of 52-card decks that the Card vector will take (1 by default). 
-``shuffle`` will shuffle the deck after creating it (true by default).
-``verbose`` will output messages describing what is currently going on (this will always be true by default).
+- ``numDecks`` is the number of 52-card decks that the Card vector will take (1 by default). 
+- ``shuffle`` will shuffle the deck after creating it (true by default).
+- ``verbose`` will output messages describing what is currently going on (this will always be true by default).
 
 
 ``shuffleCards(cards, animate=true, verbose=true)`` can take 3 arguments. This function will modify a card vector directly.
-``cards`` is the card vector that you are shuffling (Typically, the deck, but can be any vector you want to use)
-``animate`` will show shuffle animation, takes a few seconds to do, so you should turn it off while debugging. (true by default)
-``verbose`` see previous verbose()
+- ``cards`` is the card vector that you are shuffling (Typically, the deck, but can be any vector you want to use)
+- ``animate`` will show shuffle animation, takes a few seconds to do, so you should turn it off while debugging. (true by default)
+- ``verbose`` see previous verbose()
 
 
 
 ``drawCards(cardVect, numDrawn=1, verbose=true)`` can take 3 arguments. This function will modify a vector directly and return another one (the cards that were "drawn").
-``cardVect`` is the card vector that is being drawn from.
-``numDrawn`` is the number of cards drawn from the card vector.
-``verbose`` see previous verbose()
+- ``cardVect`` is the card vector that is being drawn from.
+- ``numDrawn`` is the number of cards drawn from the card vector.
+- ``verbose`` see previous verbose()
 
 To be continued...

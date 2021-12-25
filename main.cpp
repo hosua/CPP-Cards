@@ -3,6 +3,7 @@
 static const chrono::milliseconds TIME_CONST(500); 
 
 int main(){
+	verboseOverloads = false;
 	// Be sure to start your program with this for rng to work properly
 	// The seed will be based on the second the program is executed on.
 	srand(time(0)); 
@@ -10,9 +11,16 @@ int main(){
 	shuffleCards(deck, false, true);
 	auto hand1 = drawCards(deck, 5);
 	auto hand2 = drawCards(deck, 5);
+	auto cVect = {Card(Ace, Spade), Card(Ace, Club)};
+	hand1 += Card(Ace, Club);
+	hand1 += Card(Ace, Spade);
+	cout << hand1 - cVect;
 
-	cout << Card(King, Diamond) + Card(Ace, Spade);
+	cout << hand1;
 
+	hand1 -= cVect;
+
+	cout << hand1;
 	for (int i = 0; i < hand1.size(); i++)
 		cout << hand1[i].getInfo() << " " << endl;
 	cout << endl;

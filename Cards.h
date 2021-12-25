@@ -149,6 +149,17 @@ class Card{
 		// ** Directly modifies the vector 
 		friend void operator-=(vector<Card> &cardVect, Card c);
 
+		// Remove the first instance of all cards in vector b from vector a. 
+		// ** Directly modifies the Card vector
+		friend void operator-=(vector<Card> &a, vector<Card> b);
+
+		// Return the  card Vector, "minus" the card specified. 
+		// Only removes the first instance of the card if multiple exist.
+		// ** Does not directly modify the Card vector
+		friend vector<Card> operator-(vector<Card> cardVect, Card c);
+		// Return the Card vector a, minus all the cards in Card vector b that are found in a.
+		// ** Does not directly modify the Card vector
+		friend vector<Card> operator-(vector<Card> a, vector<Card> b);
 		// Subtracting an integer from a Card vector will return the painted cards
 		// but with n-cards facedown. 
 		// Example use: 

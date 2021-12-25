@@ -32,7 +32,7 @@ You can also initialize an empty card ``Card c = Card()``. This will automatical
 
 #### Getting 
 
-You can use ``card.getRank()`` and ``card.getSuit()`` to get Rank and Suit.
+You can use ``card.getRank()`` and ``card.getSuit()`` to get Rank and the Suit respectively. 
 
 You can use ``card.getPair()`` to get a ``std::pair`` of the Rank and Suit.
 

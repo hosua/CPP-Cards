@@ -10,11 +10,9 @@ TO DO:
 - Ensure no bugs are in newly implemented overloads
 - Create some examples to show the implementation of the engine
 
-# Some notes about the card game engine
+# Cards.h
 
-## Cards.h
-
-### maps
+## maps
 ``suitToStr<Suit, string>`` converts the Suit tokens into strings.
 
 ``rankToStr<Rank, string>`` converts the Rank tokens into strings.
@@ -22,15 +20,15 @@ TO DO:
 ``rankToChar<Rank, char>`` converts all Ranks into chars. Used for "painting" (asciifying) the cards.
 
 
-### Card class
+## Card class
 Initializing cards
 
-You can easily initialize one by doing ``Card c = Card(Ace, Spade)``.
+You can easily initialize a Card object with ``Card c = Card(Ace, Spade)``.
 
-You can also initialize an empty card ``Card c = Card()``. This will automatically set the card with ``NullR`` and ``NullS`` as its Rank and Suit respectively. You can then use ``c.setCard(King, Diamond)`` to set its attributes.
+You can also initialize an empty Card object ``Card c = Card()``. This will automatically set the card with ``NullR`` and ``NullS`` as its Rank and Suit respectively. You can then use ``c.setCard(King, Diamond)`` to set its attributes.
 
 
-#### Getting 
+### Getting 
 
 You can use ``card.getRank()`` and ``card.getSuit()`` to get Rank and the Suit respectively. 
 
@@ -41,7 +39,7 @@ You can use ``card.getInfo()`` to return the cards rank in suit in the form of "
 You can use ``card.printInfo()``, which just prints out what ``getInfo()`` returns.
 
 
-#### Compare functions
+### Compare functions
 
 You can use ``card1.samePair(card2)`` to see if ``card1`` is the exact same card as ``card2``.
 

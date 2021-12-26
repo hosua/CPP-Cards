@@ -49,7 +49,7 @@ You can use ``card1.sameSuit(card2)`` to see if both have cards the same Suit.
 
 
 
-### Functions
+## Functions
 
 ``vector<Card> createDeck(numDecks=1, shuffle=true, verbose=true)`` can take 3 arguments (minimum 0). 
 This function will return a Card vector.

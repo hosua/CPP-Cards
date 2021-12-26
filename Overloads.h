@@ -57,13 +57,13 @@ inline vector<Card> operator+(vector<Card> a, vector<Card> b){
     return a;
 }
 
-// Return a vector made from 2 card objects
+// Return a vector made from 2 Card objects
 inline vector<Card> operator+(Card a, Card b){
     return vector<Card> {a, b};
 }
 
 // Combine two Card vectors 
-// ** Directly modifies the vector of the left operand
+// ** Directly modifies the left vector operand
 inline void operator+=(vector<Card> &a, vector<Card> b){
     a.insert(a.end(), b.begin(), b.end());
     if (verboseOverloads) {

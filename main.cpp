@@ -11,7 +11,7 @@ int main(){
 	shuffleCards(deck, false, true);
 	auto hand1 = drawCards(deck, 5);
 	auto hand2 = drawCards(deck, 5);
-	auto cVect = {Card(Ace, Spade), Card(Ace, Club)};
+	auto cVect = { Card(Ace, Spade), Card(Ace, Club) };
 	hand1 += Card(Ace, Club);
 	hand1 += Card(Ace, Spade);
 	cout << hand1 - cVect;

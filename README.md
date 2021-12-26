@@ -101,6 +101,9 @@ Each card Suit and facdown cards are represented in array strings (spadeCard, di
 - ``facedown`` See paintCards()
 - ``topRHS`` If this value is true, the cards will be painted with the top card on the right hand side. If its false, the top card will be on the left hand side.
 
+The image below illustrates the 3 different stack modes that you can use.
+
+![Stack Modes](https://i.imgur.com/mqG9v0V.jpg)
 
 ``paintSingle(Card c)`` takes 1 argument (minimum 1). Does exactly what the other paint functions do, but for lone Card objects.
 - ``c`` The card being painted.
@@ -111,11 +114,11 @@ Each card Suit and facdown cards are represented in array strings (spadeCard, di
 
 # Overloads.h
 
+In the ``Overloads.h`` file, there is a global variable named ``verboseOverloads``. You can set this variable true or false in any file at any time if you wish to change verbose output to show or not when using overloaded operators (This variable has no effect when calling the paint functions directly, only when using any of the overloaded operators.
+
 Overloads.h contains all the overloaded operators that can be used with the Card objects and vectors. For example, you can paint a card directly by using the `<<` operator, or even use `+=` to add a Card object to a vector.
 
-
-The purpose of these overloads is to abstract the "painting" of cards and to provide a short-hand alternative method to paint the cards. These overloads  
-
+The purpose of these overloads is to abstract the "painting" of cards and to provide a short-hand alternative method to paint the cards.   
 
 Below is a comprehensive list of all the overloaded operations available. These implementations will also be demonstrated in some provided examples. These notes are taken directly from the comments from the source code, so if you are unsure of how an implementation works, either check the example ``.cpp`` files or check this file for more details.
 

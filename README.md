@@ -5,11 +5,11 @@ Currently, I have made a small war game demo as an example of how an implementat
 
 Most of this information is also commented in the code, so please be sure to check out the comments as well if anything doesn't make sense to you.
 
+Please be sure to check out the overloaded functions in ``Overloads.h``. They do most of the things that are in ``Paint.h`` but are easier to read and write.
+
 This is currently a work in progress.
 
 TO DO:
-- Finish readme
-- Ensure no bugs are in newly implemented overloads
 - Create some examples to show the implementation of the engine
 
 # Cards.h

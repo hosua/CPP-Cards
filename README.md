@@ -154,7 +154,7 @@ Return a vector made from 2 Card objects
 Combine two Card vectors 
 Directly modifies the left vector operand
 
-### Subtraction ops
+### Subtraction operations
 
 - ``void operator-=(vector<Card> &cardVect, Card c);``
 Remove the first instance of Card object found in the vector if it exists.

@@ -8,7 +8,7 @@ static const chrono::milliseconds TIME_CONST(500);
 
 // Draw cards not stacked
 void paintTest1(){
-	cout << "Paint test 1 (not stacked)" << endl;
+	cout << "Paint test 1 (NONE)" << endl;
 	vector<Card> hand;
 	for (auto its = suitToStr.begin(); its != suitToStr.end(); its++){
 		hand.push_back(Card(Ace, its->first));
@@ -19,7 +19,7 @@ void paintTest1(){
 
 // Paint cards stacked, RHS on top with some cards face down
 void paintTest2(){
-	cout << "Paint test 2 (paintStacked RHS)" << endl;
+	cout << "Paint test 2 (RHS)" << endl;
 	vector<Card> hand;
 	for (auto its = suitToStr.begin(); its != suitToStr.end(); its++){
 		hand.push_back(Card(Ace, its->first));
@@ -29,7 +29,7 @@ void paintTest2(){
 }
 // Paint cards stacked, LHS on top, with some cards face down
 void paintTest3(){
-	cout << "Paint test 3 (paintStacked LHS)" << endl;
+	cout << "Paint test 3 (LHS)" << endl;
 	vector<Card> hand;
 	for (auto its = suitToStr.begin(); its != suitToStr.end(); its++){
 		hand.push_back(Card(Ace, its->first));

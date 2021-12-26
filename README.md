@@ -125,56 +125,56 @@ Below is a comprehensive list of all the overloaded operations available. These 
 These notes are taken directly from the ``Overloads.h``. They may make more sense if you just read through that file directly.
 ### Printing 
 
-- Directly print Card objects through output stream with '<<'
-``ostream& operator<<(ostream& out, Card c);``
+- ``ostream& operator<<(ostream& out, Card c);``
+Directly print Card objects through output stream with '<<'
 
-- Directly print Card vectors through output stream with '<<'
-``ostream& operator<<(ostream& out, vector<Card> cardVect);``
+- ``ostream& operator<<(ostream& out, vector<Card> cardVect);``
+Directly print Card vectors through output stream with '<<'
 
-### Addition ops
+### Addition operations
 
-- Return a Card object added to a Card vector
+- ``vector<Card> operator+(vector<Card> cardVect, Card c);``
+Return a Card object added to a Card vector
 Does not modify original vector
-``vector<Card> operator+(vector<Card> cardVect, Card c);``
 
-- Reversed. This way of inserting is much less efficient and should not be used often
-``vector<Card> operator+(Card c, vector<Card> cardVect);``
+- ``vector<Card> operator+(Card c, vector<Card> cardVect);``
+Reversed. This way of inserting is much less efficient and should not be used often
 
-- Append a Card object to a Card vector with '+='
-``void operator+=(vector<Card> &cardVect, Card c);``
+- ``void operator+=(vector<Card> &cardVect, Card c);``
+Append a Card object to a Card vector with '+='
 
-- Return two Card vectors combined into one.
+- ``vector<Card> operator+(vector<Card> a, vector<Card> b);``
+Return two Card vectors combined into one.
 Does not modify original vectors
-``vector<Card> operator+(vector<Card> a, vector<Card> b);``
 
-- Return a vector made from 2 Card objects
-``vector<Card> operator+(Card a, Card b);``
+- ``vector<Card> operator+(Card a, Card b);``
+Return a vector made from 2 Card objects
 
-- Combine two Card vectors 
+- ``void operator+=(vector<Card> &a, vector<Card> b);``
+Combine two Card vectors 
 Directly modifies the left vector operand
-``void operator+=(vector<Card> &a, vector<Card> b);``
 
 ### Subtraction ops
 
-- Remove the first instance of Card object found in the vector if it exists.
+- ``void operator-=(vector<Card> &cardVect, Card c);``
+Remove the first instance of Card object found in the vector if it exists.
 Directly modifies the vector of the left operand
-``void operator-=(vector<Card> &cardVect, Card c);``
 
-- Remove the first instance of all cards in vector b from vector a. 
+- ``void operator-=(vector<Card> &a, vector<Card> b);``
+Remove the first instance of all cards in vector b from vector a. 
 Directly modifies the Card vector
-``void operator-=(vector<Card> &a, vector<Card> b);``
 
-- Return the  card Vector, "minus" the card specified. 
+- ``vector<Card> operator-(vector<Card> cardVect, Card c);``
+Return the  card Vector, "minus" the card specified. 
 Only removes the first instance of the card if multiple exist.
 Does not directly modify the Card vector
-``vector<Card> operator-(vector<Card> cardVect, Card c);``
 
-- Return the Card vector a, minus all the cards in Card vector b that are found in a.
+- ``vector<Card> operator-(vector<Card> a, vector<Card> b);``
+Return the Card vector a, minus all the cards in Card vector b that are found in a.
 Does not directly modify the Card vector
-``vector<Card> operator-(vector<Card> a, vector<Card> b);``
 
-- Subtracting an int, n from a Card vector will return the painted cards with n-cards facedown. 
+- ``string operator-(vector<Card> cardVect, int n);``
+Subtracting an int, n from a Card vector will return the painted cards with n-cards facedown. 
 Example use: ``cout << cardVect-2 << endl;``.
 This will paint all cards in cardVect but with 2 facing down.
-``string operator-(vector<Card> cardVect, int n);``
 

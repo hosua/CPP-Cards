@@ -16,6 +16,7 @@ To run the card games
 You can compile the provided programs by running the ``compile_mac.sh`` script (``./compile_mac.sh`` in the terminal)
 
 If you would like to compile and run the programs yourself,
+
 To run the test
 - Compile it with ``g++ test.cpp -std=gnu++11``
 - Run it with ``./a.out`` 

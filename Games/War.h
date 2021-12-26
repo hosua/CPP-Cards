@@ -52,27 +52,28 @@ void war(){
         clear();
         switch(state){
         case INITIAL_PHASE: // Drawing phase
-            cout << "Press enter to play your card.";
-            cin.get();
             clear();
-            cout << "Player card count: " << player.size() << "\tComputer card count: " << computer.size() << endl;
-            cout << player - (player.size()-1);
-            cout << computer - (computer.size()-1);
+            cout << "Press enter to reveal the next card" << endl;
+            cin.get();
+            cout << "Player card count: " << player.size() << endl; 
+            cout << player - player.size();
+            cout << "Computer card count: " << computer.size() << endl;
+            cout << computer - computer.size();
+            
+            this_thread::sleep_for(TIME_CONST*2);
             cin.get();
             clear();
             state = Revealing;
             break;
 
         case Revealing: // Players reveal their cards
-            cout << "Cards remaining: " << deck.size() << endl;
-
-            cout << "Press enter to reveal the cards!" << endl;
+            cout << "Cards were revealed!" << endl;
+            cout << "Player card count: " << player.size() << endl; 
+            cout << player - (player.size()-1);
+            cout << "Computer card count: " << computer.size() << endl;
+            cout << computer - (computer.size()-1);
             cin.get();
-
             clear();
-            cout << player << endl; // Show player & computer's card, face up
-            cout << computer << endl; 
-            this_thread::sleep_for(TIME_CONST*2);
             state = Calculating;
             break;
 
@@ -80,8 +81,14 @@ void war(){
             Card c = getWinner(player[0], computer[0]);
             if (c.getPair() == player[0].getPair()){
                 cout << "Player wins!" << endl;
+                rotate(player.begin(), player.begin()+1, player.end()); // Rotate the first Card to the back of the hand
+                player.push_back(computer[0]); // Push loser card to the back of winner's hand
+                computer -= computer[0]; // Remove from computer hand
             } else if (c.getPair() == computer[0].getPair()){
                 cout << "Computer wins!" << endl;
+                rotate(computer.begin(), computer.begin()+1, computer.end());
+                computer.push_back(player[0]);
+                player -= player[0];
             } else {
                 cout << "Tie." << endl;
             }

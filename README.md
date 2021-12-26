@@ -67,14 +67,14 @@ This function will return a Card vector.
 ``shuffleCards(vector<Card> &cards, bool animate=true, bool verbose=true)`` can take 3 arguments (minimum 1). This function will modify a card vector directly.
 - ``cards`` is the card vector that you are shuffling (Typically, the deck, but can be any vector you want to use)
 - ``animate`` will show shuffle animation, takes a few seconds to do, so you should turn it off while debugging. (true by default)
-- ``verbose`` see previous verbose()
+- ``verbose`` see previous ``verbose()``
 
 
 
 ``drawCards(vector<Card> &cardVect, int numDrawn=1, bool verbose=true)`` can take 3 arguments (minimum 1). This function will modify a vector directly and return another one (the cards that were "drawn").
 - ``cardVect`` is the card vector that is being drawn from.
 - ``numDrawn`` is the number of cards drawn from the card vector.
-- ``verbose`` see previous verbose()
+- ``verbose`` see previous ``verbose()``
 
 # Paint.h
 

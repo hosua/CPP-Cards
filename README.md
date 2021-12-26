@@ -83,7 +83,6 @@ This function will return a Card vector.
 Please note that the option to use overloaded operators is available as well. They will probably be syntactically easier to use and write and are recommended. You can see how they work in the ``Overloads.h`` file and later in the README.
 
 How the cards are painted:
-
 Each card Suit and facdown cards are represented in array strings (``spadeCard``, ``diamondCard``, ``facedownCard``... etc.) with a 'Z' character as the placeholder for a Rank. The 'Z' is later replaced with the appropriate character when its being painted to represent a proper card (10 is handled manually because it is 2 characters long)
 
 

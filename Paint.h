@@ -58,10 +58,10 @@ inline string facedownCard[] = {
 };
 
 inline map<Suit,string*> drawMap = {
-	{Spade, spadeCard}, 
-	{Diamond, diamondCard},
-	{Club, clubCard}, 
-	{Heart, heartCard}
+	{SPADE, spadeCard}, 
+	{DIAMOND, diamondCard},
+	{CLUB, clubCard}, 
+	{HEART, heartCard}
 };
 
 
@@ -82,22 +82,22 @@ inline string paintCards(vector<Card> cardVect, int numPainted=-1, int facedown=
 			Card c = cardVect[j];
 			string cardStr = drawMap.find(c.getSuit())->second[i];
 			char ch;
-			if (c.getRank() != Ten){
+			if (c.getRank() != TEN){
 				ch = rankToChar.find(c.getRank())->second;
 				replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 			} else {
 				// 10 will require a special case because its length is 2.
 				if (i == 1){
-					if (c.getSuit() == Spade){
+					if (c.getSuit() == SPADE){
 						cardStr = "|10.  |";
 					} 
-					if (c.getSuit() == Diamond){
+					if (c.getSuit() == DIAMOND){
 						cardStr = "|10^  |";
 					}
-					if (c.getSuit() == Club){
+					if (c.getSuit() == CLUB){
 						cardStr = "|10_  |";
 					}
-					if (c.getSuit() == Heart){
+					if (c.getSuit() == HEART){
 						cardStr = "|10 _ |";
 					}
 				}
@@ -139,7 +139,7 @@ inline string paintStacked(vector<Card> cardVect, int numPainted=-1, int facedow
 				cardStr = drawMap.find(c.getSuit())->second[i];
 				cardStr = cardStr.substr(0,3);
 				// 10 will require a special case because its length is 2.
-				if (c.getRank() != Ten){
+				if (c.getRank() != TEN){
 					ch = rankToChar.find(c.getRank())->second;
 					replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 				} else {
@@ -162,20 +162,20 @@ inline string paintStacked(vector<Card> cardVect, int numPainted=-1, int facedow
 				else {
 					ch = rankToChar.find(c.getRank())->second;
 					cardStr = drawMap.find(c.getSuit())->second[i].substr(3,6);
-					if (c.getRank() != Ten)
+					if (c.getRank() != TEN)
 						replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 					else {
 						if (i == 1){
-							if (c.getSuit() == Spade){
+							if (c.getSuit() == SPADE){
 								cardStr = ".  |";
 							} 
-							if (c.getSuit() == Diamond){
+							if (c.getSuit() == DIAMOND){
 								cardStr = "^  |";
 							}
-							if (c.getSuit() == Club){
+							if (c.getSuit() == CLUB){
 								cardStr = "_  |";
 							}
-							if (c.getSuit() == Heart){
+							if (c.getSuit() == HEART){
 								cardStr = " _ |";
 							}
 						}
@@ -199,7 +199,7 @@ inline string paintStacked(vector<Card> cardVect, int numPainted=-1, int facedow
 					cardStr = facedownCard[i].substr(0,3);
 				} else {
 					cardStr = drawMap.find(c.getSuit())->second[i].substr(0,3);
-					if (c.getRank() != Ten){
+					if (c.getRank() != TEN){
 						ch = rankToChar.find(c.getRank())->second;
 						replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 					} else {
@@ -219,21 +219,21 @@ inline string paintStacked(vector<Card> cardVect, int numPainted=-1, int facedow
 				cardStr = drawMap.find(c.getSuit())->second[i];
 				cardStr = cardStr.substr(3,6);
 				// 10 will require a special case because its length is 2.
-				if (c.getRank() != Ten){
+				if (c.getRank() != TEN){
 					ch = rankToChar.find(c.getRank())->second;
 					replace(cardStr.begin(), cardStr.end(), 'Z', ch);
 				} else {
 					if (i == 1){
-						if (c.getSuit() == Spade){
+						if (c.getSuit() == SPADE){
 							cardStr = ".  |";
 						} 
-						if (c.getSuit() == Diamond){
+						if (c.getSuit() == DIAMOND){
 							cardStr = "^  |";
 						}
-						if (c.getSuit() == Club){
+						if (c.getSuit() == CLUB){
 							cardStr = "_  |";
 						}
-						if (c.getSuit() == Heart){
+						if (c.getSuit() == HEART){
 							cardStr = " _ |";
 						}
 					}
@@ -258,18 +258,18 @@ inline string paintSingle(Card c){
 	string outStr, cardStr;
 	for (int i = 0; i < CARD_HEIGHT; i++){
 		cardStr = drawMap.find(c.getSuit())->second[i];
-		if (c.getRank() == Ten){
+		if (c.getRank() == TEN){
 			if (i == 1){
-				if (c.getSuit() == Spade){
+				if (c.getSuit() == SPADE){
 					cardStr = "10 .  |";
 				} 
-				if (c.getSuit() == Diamond){
+				if (c.getSuit() == DIAMOND){
 					cardStr = "10 ^  |";
 				}
-				if (c.getSuit() == Club){
+				if (c.getSuit() == CLUB){
 					cardStr = "10 _  |";
 				}
-				if (c.getSuit() == Heart){
+				if (c.getSuit() == HEART){
 					cardStr = "10_ _ |";
 				}
 			}

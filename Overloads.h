@@ -1,7 +1,8 @@
-#include "Paint.h"
-
+// Header guards so that headers can be included more than once
 #ifndef _OVERLOADS
 #define _OVERLOADS
+
+#include "Paint.h"
 
 // All overload definitions reside in this file.
 // NOTE TO SELF: To define overload operators in header files, they need to be inline 

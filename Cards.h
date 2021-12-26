@@ -1,3 +1,4 @@
+// Header guards so that headers can be included more than once
 #ifndef _CARDS
 #define _CARDS
 
@@ -13,8 +14,8 @@
 using namespace std;
 
 
-enum Rank { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, NullR};
-enum Suit { Diamond, Heart, Club, Spade, NullS};
+enum Rank { ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, NULLR};
+enum Suit { DIAMOND, HEART, CLUB, SPADE, NULLS};
 
 // Clear console output completely
 // https://stackoverflow.com/questions/6486289/how-can-i-clear-console
@@ -31,24 +32,24 @@ inline void clear() {
 }
 
 inline map <Suit, string> suitToStr = {
-	{ Diamond, "Diamond" }, { Heart, "Heart" },
-	{ Club, "Club" }, { Spade, "Spade" }
+	{ DIAMOND, "Diamond" }, { HEART, "Heart" },
+	{ CLUB, "Club" }, { SPADE, "Spade" }
 };
 
 inline map <Rank, string> rankToStr = {
-	{ Ace, "Ace" }, { Two, "Two" }, { Three, "Three" }, { Four, "Four" }, 
-	{ Five, "Five" }, { Six, "Six" }, { Seven, "Seven" }, { Eight, "Eight" },
-	{ Nine, "Nine" }, { Ten, "Ten" }, { Jack, "Jack" }, { Queen, "Queen" },
-	{ King, "King" } 
+	{ ACE, "Ace" }, { TWO, "Two" }, { THREE, "Three" }, { FOUR, "Four" }, 
+	{ FIVE, "Five" }, { SIX, "Six" }, { SEVEN, "Seven" }, { EIGHT, "Eight" },
+	{ NINE, "Nine" }, { TEN, "Ten" }, { JACK, "Jack" }, { QUEEN, "Queen" },
+	{ KING, "King" } 
 };
 
 inline map <Rank, char> rankToChar = { 
 	// 10 will awkwardly be displayed as 'T' with ->second, but whatever.
 	// Just manually deal with it later. idk wtf to do with it right now
-	{ Ace, 'A'}, { Two, '2'}, { Three, '3'}, { Four, '4'}, 
-	{ Five, '5'}, { Six, '6'}, { Seven, '7'}, { Eight, '8'}, 
-	{ Nine, '9'}, { Ten, 'T'}, { Jack, 'J'}, { Queen, 'Q'}, 
-	{ King, 'K'} 
+	{ ACE, 'A'}, { TWO, '2'}, { THREE, '3'}, { FOUR, '4'}, 
+	{ FIVE, '5'}, { SIX, '6'}, { SEVEN, '7'}, { EIGHT, '8'}, 
+	{ NINE, '9'}, { TEN, 'T'}, { JACK, 'J'}, { QUEEN, 'Q'}, 
+	{ KING, 'K'} 
 };
 
 class Card{
@@ -61,8 +62,8 @@ class Card{
 		/* Constructors */
 		// Constructor with no parameters
 		Card(){
-			this->rank = NullR;
-			this->suit = NullS;
+			this->rank = NULLR;
+			this->suit = NULLS;
 			this->rsPair = make_pair(rank, suit);
 		}
 		// Constructor with Rank and Suit as parameters

@@ -27,50 +27,52 @@ void war(){
         pts++;
     }
     rankToPts.insert(pair<Rank, int>(ACE, pts++));
-    /*
+
     // Output point chart
     for (auto it = rankToPts.begin(); it != rankToPts.end(); it++){
         cout << "Rank: " << rankToStr.find(it->first)->second << "\tpts: " << it->second << endl;
     }
-    */
-    vector<Card> deck = createDeck();
-    vector<Card> player, computer;
-    verboseOverloads = false; // Disable this while we draw cards
-    // I don't really have to deal the cards like this but this iteration stays true to the game rules
-    for (int i = 0; i < 26; i++){ // Deal each player 1 card per iteration
-        player += drawCards(deck, 1, false); 
-        computer += drawCards(deck, 1, false);
-    }
-    verboseOverloads = true; // Re-enable verbose output for overloads
 
-    cout << "Dealing the cards to both players..." << endl;
-    this_thread::sleep_for(TIME_CONST*2);
+    vector<Card> deck;
+    vector<Card> player, computer;
     // A basic state machine implementation
-    enum State { INITIAL_PHASE, Revealing, Calculating };
-    State state = INITIAL_PHASE;
+    enum State {Drawing, Revealing, Calculating};
+    State state = Drawing;
+    int playerScore = 0, computerScore = 0;
     while (true){
         clear();
         switch(state){
-        case INITIAL_PHASE: // Drawing phase
-            cout << "Press enter to play your card.";
+        case Drawing: // Drawing phase
+            if (deck.size() == 0){
+                cout << "Empty deck detected, creating a new one." << endl;
+                this_thread::sleep_for(TIME_CONST);
+                deck = createDeck(); 
+            }
+            cout << "Press enter to draw a card.";
             cin.get();
             clear();
-            cout << "Player card count: " << player.size() << "\tComputer card count: " << computer.size() << endl;
-            cout << player - (player.size()-1);
-            cout << computer - (computer.size()-1);
-            cin.get();
+            player = drawCards(deck, 1, false); // Draw 1 card, without verbose output
+            computer = drawCards(deck, 1, false);
+            cout << "Cards remaining: " << deck.size() << endl;
+            cout << "Player: " << playerScore << " points\n" << player-1 << endl; 
+            cout << "Computer: " << computerScore << " points\n" << computer-1 << endl; 
+            this_thread::sleep_for(TIME_CONST*1.5);
             clear();
             state = Revealing;
             break;
 
         case Revealing: // Players reveal their cards
             cout << "Cards remaining: " << deck.size() << endl;
+            cout << "Player: " << playerScore << " points\n" << player-1 << endl; 
+            cout << "Computer: " << computerScore << " points\n" << computer-1 << endl; 
 
             cout << "Press enter to reveal the cards!" << endl;
             cin.get();
 
             clear();
+            cout << "Player: " << playerScore << " points" << endl;
             cout << player << endl; // Show player & computer's card, face up
+            cout << "Computer: " << computerScore << " points" << endl;
             cout << computer << endl; 
             this_thread::sleep_for(TIME_CONST*2);
             state = Calculating;
@@ -80,14 +82,16 @@ void war(){
             Card c = getWinner(player[0], computer[0]);
             if (c.getPair() == player[0].getPair()){
                 cout << "Player wins!" << endl;
+                playerScore++;
             } else if (c.getPair() == computer[0].getPair()){
                 cout << "Computer wins!" << endl;
+                computerScore++;
             } else {
                 cout << "Tie." << endl;
             }
             cout << "Press enter to continue..." << endl;
             cin.get();
-            state = INITIAL_PHASE;
+            state = Drawing;
             break;
         }
     }

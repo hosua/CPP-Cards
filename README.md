@@ -1,5 +1,21 @@
+# CPP-Cards
+Text-based card game engine in C++
+
+TO DO: 
+- Add a ``sort()`` function for Card vectors
+- Make War game
+
+You can test and see some basic implementations of the engine by compiling and running ``test.cpp``, and reading through its source code. It goes over the function overloading and the use of most of the available functions.
+
+Most of this information is also commented in the code, so please be sure to check out the comments as well if anything doesn't make sense to you.
+
+I highly recommend using the overloaded operators shown in ``Overloads.h``. They do most of the things that are in ``Paint.h`` but are more intuitive to understand.
+
+This is currently a work in progress. I plan on implementing a few games using this engine.
+
+
 # Getting Started
-Please note that this guide assumes that you have ``gcc/g++`` installed on your computer. You will need it to compile this program. If you do not, please see a guide on how to do that for your operating system. This guide **will not** go over how to do that.
+Please note that this guide assumes that you have ``gcc/g++`` installed **and** eadded to your system variable PATH on your computer. You will need it to compile this program. If you do not, please see a guide on how to do that for your operating system. This guide **will not** go over how to do that.
 
 
 ### Windows
@@ -42,18 +58,6 @@ To run the test
 To run the card games
 - Compile it with``g++ main.cpp -std=gnu++11`` 
 - Run it with ``./a.out``
-
-
-# CPP-Cards
-Text-based card game engine in C++
-
-You can test and see some basic implementations of the engine by compiling and running ``test.cpp``, and reading through its source code. It goes over the function overloading and the use of most of the available functions.
-
-Most of this information is also commented in the code, so please be sure to check out the comments as well if anything doesn't make sense to you.
-
-I highly recommend using the overloaded operators shown in ``Overloads.h``. They do most of the things that are in ``Paint.h`` but are more intuitive to understand.
-
-This is currently a work in progress. I plan on implementing a few games using this engine.
 
 
 # Cards.h

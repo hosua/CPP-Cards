@@ -4,7 +4,7 @@
 #include <chrono>
 #include <thread>
 
-inline static const chrono::milliseconds TIME_CONST(500); 
+inline static const chrono::milliseconds TIME_CONST(1000); 
 
 // Draw cards not stacked
 void paintTest1(){

@@ -1,4 +1,21 @@
 # Getting Started
+Please note that this guide assumes that you have ``gcc/g++`` installed on your computer. You will need it to compile this program. If you do not, please see a guide on how to do that for your operating system. This guide **will not** go over how to do that.
+
+
+### Windows
+You can compile the provided programs by running the ``compile_windows.bat`` script.
+
+If you would like to compile and run the programs yourself,
+
+To run the test
+- Compile it with ``g++ test.cpp``
+Then run ``a.exe``
+
+To run the card games
+- Compile it with ``g++ main.cpp``
+Then run ``a.exe``
+
+
 ### Linux 
 You can compile the provided programs by running the ``compile_linux.sh`` script (``./compile_linux.sh`` in the terminal)
 
@@ -11,6 +28,7 @@ To run the test
 To run the card games
 - Compile it with ``g++ main.cpp``
 - Run it with ``./a.out``
+
 
 ### MacOS
 You can compile the provided programs by running the ``compile_mac.sh`` script (``./compile_mac.sh`` in the terminal)

@@ -158,7 +158,7 @@ Directly modifies the left vector operand
 
 - ``void operator-=(vector<Card> &cardVect, Card c);``
 Remove the first instance of Card object found in the vector if it exists.
-Directly modifies the vector of the left operand
+Directly modifies the Card vector
 
 - ``void operator-=(vector<Card> &a, vector<Card> b);``
 Remove the first instance of all cards in vector b from vector a. 

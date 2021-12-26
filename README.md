@@ -78,7 +78,7 @@ This function will return a Card vector.
 
 # Paint.h
 
-"Painting" refers to turning the Card objects into ASCII art. All logic that deals with turning the art into its ASCII form is handled in this file.
+"Painting" refers to turning the Card objects into ASCII art. All logic that deals with turning the Card objects into its ASCII form is handled in this file.
 
 Please note that the option to use overloaded operators is available as well. They will probably be syntactically easier to use and write and are recommended. You can see how they work in the ``Overloads.h`` file and later in the README.
 

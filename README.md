@@ -114,7 +114,7 @@ The image below illustrates the 3 different stack modes that you can use.
 
 # Overloads.h
 
-In the ``Overloads.h`` file, there is a global variable named ``verboseOverloads``. You can set this variable true or false in any file at any time if you wish to change verbose output to show or not when using overloaded operators (This variable has no effect when calling the paint functions directly, only when using any of the overloaded operators.
+In the ``Overloads.h`` file, there is a global variable named ``verboseOverloads``. You can set this variable true or false in any file at any time if you wish to change verbose output to show or not when using overloaded operators (This variable has no effect when calling the paint functions directly, only when using any of the overloaded operators)
 
 Overloads.h contains all the overloaded operators that can be used with the Card objects and vectors. For example, you can paint a card directly by using the `<<` operator, or even use `+=` to add a Card object to a vector.
 

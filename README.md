@@ -51,7 +51,7 @@ You can use ``card1.samePair(card2)`` to see if ``card1`` is the exact same card
 
 You can use ``card1.sameRank(card2)`` to see if ``card1`` and ``card2`` have the same Rank.
 
-You can use ``card1.sameSuit(card2)`` to see if both have cards the same Suit.
+You can use ``card1.sameSuit(card2)`` to see if both cards have the same Suit.
 
 
 
@@ -92,7 +92,7 @@ Each card Suit and facdown cards are represented in array strings (``spadeCard``
 ``paintCards(vector<Card> cardVect, int numPainted=-1, int facedown=0)`` can take 3 arguments (minimum 1). This function paints the entire card vector, and does not stack them on top of each other.
 - ``cardVect`` The card vector to paint.
 - ``numPainted`` You can choose to not paint the entire vector. This number will determine amount of cards to paint.
-- ``facedown`` You can paint cards facing down. This variable determines the number that are facedown.
+- ``facedown`` You can paint cards facing down. This variable determines the number of cards that are facedown.
 
 
 ``paintStacked(vector<Card> cardVect, int numPainted, int facedown, bool topRHS)`` can take 4 arguments (minimum 1). This function does the same as ``paintCards()`` except that it paints the cards as if they are stacked on top of each other. Depending on the value of the bool ``topRHS``, the top side can either be on the right (if true), or the left hand side (if false).

@@ -32,16 +32,20 @@ You can also initialize an empty Card object ``Card c = Card()``. This will auto
 
 ### Getting 
 
-You can use ``card.getRank()`` and ``card.getSuit()`` to get Rank and the Suit respectively. 
+Say we have the same Card object ``c`` from earlier.
 
-You can use ``card.getPair()`` to get a ``std::pair`` of the Rank and Suit.
+You can use ``c.getRank()`` and ``c.getSuit()`` to get Rank and the Suit respectively. 
 
-You can use ``card.getInfo()`` to return the cards rank in suit in the form of "Rank of Suit" (i.e, Ace of Spades).
+You can use ``c.getPair()`` to get a ``std::pair`` of the Rank and Suit.
 
-You can use ``card.printInfo()``, which just prints out what ``getInfo()`` returns.
+You can use ``c.getInfo()`` to return the cards rank in suit in the form of "Rank of Suit" (i.e, Ace of Spades).
+
+You can use ``c.printInfo()``, which just prints out what ``getInfo()`` returns.
 
 
 ### Compare functions
+
+Say we have two Card objects ``card1``, and ``card2``.
 
 You can use ``card1.samePair(card2)`` to see if ``card1`` is the exact same card as ``card2``.
 

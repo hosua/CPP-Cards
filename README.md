@@ -1,3 +1,30 @@
+# Getting Started
+### Linux 
+You can compile the provided programs by running the ``compile_linux.sh`` script (``./compile_linux.sh`` in the terminal)
+
+If you would like to compile and run the programs yourself,
+
+To run the test
+- Compile it with ``g++ test.cpp``
+- Run it with ``./a.out``
+
+To run the card games
+- Compile it with ``g++ main.cpp``
+- Run it with ``./a.out``
+
+### MacOS
+You can compile the provided programs by running the ``compile_mac.sh`` script (``./compile_mac.sh`` in the terminal)
+
+If you would like to compile and run the programs yourself,
+To run the test
+- Compile it with ``g++ test.cpp -std=gnu++11``
+- Run it with ``./a.out`` 
+
+To run the card games
+- Compile it with``g++ main.cpp -std=gnu++11`` 
+- Run it with ``./a.out``
+
+
 # CPP-Cards
 Text-based card game engine in C++
 

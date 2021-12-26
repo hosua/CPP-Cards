@@ -1,16 +1,14 @@
 # CPP-Cards
 Text-based card game engine in C++
 
-Currently, I have made a small war game demo as an example of how an implementation using the engine may look. You can test it out by compiling ``Examples/wardemo.cpp``, and running the binary.
+You can test and see some basic implementations of the engine by compiling and running ``test.cpp``, and reading through its source code. It goes over the function overloading and the use of most of the available functions.
 
 Most of this information is also commented in the code, so please be sure to check out the comments as well if anything doesn't make sense to you.
 
-Please be sure to check out the overloaded functions in ``Overloads.h``. They do most of the things that are in ``Paint.h`` but are easier to read and write.
+I highly recommend using the overloaded operators shown in ``Overloads.h``. They do most of the things that are in ``Paint.h`` but are more intuitive to understand.
 
-This is currently a work in progress.
+This is currently a work in progress. I plan on implementing a few games using this engine.
 
-TO DO:
-- Create some examples to show the implementation of the engine
 
 # Cards.h
 
@@ -116,13 +114,13 @@ The image below illustrates the 3 different stack modes that you can use.
 
 In the ``Overloads.h`` file, there is a global variable named ``verboseOverloads``. You can set this variable true or false in any file at any time if you wish to change verbose output to show or not when using overloaded operators (This variable has no effect when calling the paint functions directly, only when using any of the overloaded operators)
 
-Overloads.h contains all the overloaded operators that can be used with the Card objects and vectors. For example, you can paint a card directly by using the `<<` operator, or even use `+=` to add a Card object to a vector.
+``Overloads.h`` contains all the overloaded operators that can be used with the Card objects and vectors. For example, you can paint a card directly by using the `<<` operator, or even use `+=` to add a Card object to a vector.
 
 The purpose of these overloads is to abstract the "painting" of cards and to provide a short-hand alternative method to paint the cards.   
 
-Below is a comprehensive list of all the overloaded operations available. These implementations will also be demonstrated in some provided examples. These notes are taken directly from the comments from the source code, so if you are unsure of how an implementation works, either check the example ``.cpp`` files or check this file for more details.
+Below is a comprehensive list of all the overloaded operations available. These implementations will also be demonstrated in some provided examples. These notes are taken directly from the comments from the source code, so if you are unsure of how an implementation works, either check the examples in ``test.cpp``, or check ``Overloads.h`` for more details.
 
-These notes are taken directly from the ``Overloads.h``. They may make more sense if you just read through that file directly.
+
 ### Printing 
 
 - ``ostream& operator<<(ostream& out, Card c);``

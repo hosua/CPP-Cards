@@ -1,3 +1,6 @@
+#ifndef _CARDS
+#define _CARDS
+
 #include <iostream>
 #include <map>
 #include <string>
@@ -8,6 +11,7 @@
 #include <algorithm>
 
 using namespace std;
+
 
 enum Rank { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, NullR};
 enum Suit { Diamond, Heart, Club, Spade, NullS};
@@ -153,7 +157,7 @@ class Card{
 		// ** Directly modifies the Card vector
 		friend void operator-=(vector<Card> &a, vector<Card> b);
 
-		// Return the  card Vector, "minus" the card specified. 
+		// Return the card Vector, "minus" the card specified. 
 		// Only removes the first instance of the card if multiple exist.
 		// ** Does not directly modify the Card vector
 		friend vector<Card> operator-(vector<Card> cardVect, Card c);
@@ -241,3 +245,4 @@ inline vector<Card> drawCards(vector<Card> &cardVect, int numDrawn=1, bool verbo
 	return c;
 }
 
+#endif

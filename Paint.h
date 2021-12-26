@@ -1,4 +1,9 @@
 // Ascii art made by ejm98, source: https://www.asciiart.eu/miscellaneous/playing-cards
+
+// Header guards so that headers can be included more than once
+#ifndef _PAINT
+#define _PAINT
+
 #include <string>
 #include <iostream>
 #include "Cards.h"
@@ -60,7 +65,7 @@ inline map<Suit,string*> drawMap = {
 };
 
 
-/* Draws an array of cards in ASCII
+/* Paints an array of cards in ASCII
 Cards are fully displayed and not on top of each other.
 */
 inline string paintCards(vector<Card> cardVect, int numPainted=-1, int facedown=0){ 			
@@ -114,7 +119,7 @@ inline string paintCards(vector<Card> cardVect, int numPainted=-1, int facedown=
 Like paintCards, except the cards will be painted as if they are stacked on top of each other.
 topRHS=true will mean that the top card of the stack will be on the right side.
 */
-inline string paintStacked(vector<Card> cardVect, int numPainted=-1, int facedown=0, bool topRHS=true){ // Draws an array of cards in ASCII
+inline string paintStacked(vector<Card> cardVect, int numPainted=-1, int facedown=0, bool topRHS=true){ // Paints an array of cards in ASCII
 	// Bound checks
 	if (numPainted < 0 || numPainted > cardVect.size()) numPainted = cardVect.size(); 		
 	if (facedown < 0) facedown = 0;
@@ -148,7 +153,7 @@ inline string paintStacked(vector<Card> cardVect, int numPainted=-1, int facedow
 				}
 				outStr += cardStr;
 			}
-			// Draw the last card 
+			// Paint the last card 
 			c = cardVect[numPainted-1-facedown];
 			// Make sure we actually have any cards to draw
 			if (numPainted != 0){
@@ -248,7 +253,7 @@ inline string paintStacked(vector<Card> cardVect, int numPainted=-1, int facedow
 	return outStr;
 }
 
-// Draw a single Card object
+// Paint a single Card object
 inline string paintSingle(Card c){
 	string outStr, cardStr;
 	for (int i = 0; i < CARD_HEIGHT; i++){
@@ -303,3 +308,5 @@ inline void shuffleAnimation(bool verbose=true){
 	if (verbose)
 		cout << "The cards were shuffled." << endl;
 }
+
+#endif

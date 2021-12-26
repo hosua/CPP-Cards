@@ -1,4 +1,8 @@
 #include "Paint.h"
+
+#ifndef _OVERLOADS
+#define _OVERLOADS
+
 // All overload definitions reside in this file.
 // NOTE TO SELF: To define overload operators in header files, they need to be inline 
 
@@ -158,7 +162,6 @@ inline string operator-(vector<Card> cardVect, int n){
     return outStr;
 }
 
-    
-
+#endif
 
 

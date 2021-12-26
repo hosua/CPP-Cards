@@ -3,6 +3,8 @@ Text-based card game engine in C++
 
 Currently, I have made a small war game demo as an example of how an implementation using the engine may look. You can test it out by compiling ``Examples/wardemo.cpp``, and running the binary.
 
+Most of this information is also commented in the code, so please be sure to check out the comments as well if anything doesn't make sense to you.
+
 This is currently a work in progress.
 
 TO DO:
@@ -51,21 +53,21 @@ You can use ``card1.sameSuit(card2)`` to see if both have cards the same Suit.
 
 ## Functions
 
-``vector<Card> createDeck(numDecks=1, shuffle=true, verbose=true)`` can take 3 arguments (minimum 0). 
+``vector<Card> createDeck(int numDecks=1, bool shuffle=true, bool verbose=true)`` can take 3 arguments (minimum 0). 
 This function will return a Card vector.
 - ``numDecks`` is the number of 52-card decks that the Card vector will take (1 by default). 
 - ``shuffle`` will shuffle the deck after creating it (true by default).
 - ``verbose`` will output messages describing what is currently going on (this will always be true by default).
 
 
-``shuffleCards(cards, animate=true, verbose=true)`` can take 3 arguments (minimum 1). This function will modify a card vector directly.
+``shuffleCards(vector<Card> &cards, bool animate=true, bool verbose=true)`` can take 3 arguments (minimum 1). This function will modify a card vector directly.
 - ``cards`` is the card vector that you are shuffling (Typically, the deck, but can be any vector you want to use)
 - ``animate`` will show shuffle animation, takes a few seconds to do, so you should turn it off while debugging. (true by default)
 - ``verbose`` see previous verbose()
 
 
 
-``drawCards(cardVect, numDrawn=1, verbose=true)`` can take 3 arguments (minimum 1). This function will modify a vector directly and return another one (the cards that were "drawn").
+``drawCards(vector<Card> &cardVect, int numDrawn=1, bool verbose=true)`` can take 3 arguments (minimum 1). This function will modify a vector directly and return another one (the cards that were "drawn").
 - ``cardVect`` is the card vector that is being drawn from.
 - ``numDrawn`` is the number of cards drawn from the card vector.
 - ``verbose`` see previous verbose()
@@ -74,21 +76,22 @@ This function will return a Card vector.
 
 "Painting" refers to turning the Card objects into ASCII art. All logic that deals with turning the art into its ASCII form is handled in this file.
 
-The way it works:
+Please note that the option to use overloaded operators is available as well. They will probably be syntactically easier to use and write and are recommended. You can see how they work in the ``Overloads.h`` file and later in the README.
 
+The way it works:
 
 Each card Suit and facdown cards are represented in array strings (spadeCard, diamondCard, facedownCard... etc.) with a 'Z' character as the placeholder for a Rank. The 'Z' is later replaced with the appropriate character when its being painted to represent a proper card (10 is handled manually because it is 2 characters long)
 
 
-### Functions
+## Functions
 
-``paintCards(cardVect, numPainted=-1, facedown=0)`` can take 3 arguments (minimum 1). This function paints the entire card, and does not stack them on top of each other.
+``paintCards(vector<Card> cardVect, int numPainted=-1, int facedown=0)`` can take 3 arguments (minimum 1). This function paints the entire card vector, and does not stack them on top of each other.
 - ``cardVect`` The card vector to paint.
-- ``numPainted`` You can choose to not paint the entire card. This card will paint the amount of cards specified by this variable.
+- ``numPainted`` You can choose to not paint the entire vector. This card will paint the amount of cards specified by this variable.
 - ``facedown`` You can paint cards facing down. This variable determines the number that are facedown.
 
 
-``paintStacked(cardVect, numPainted, facedown, topRHS)`` can take 4 arguments (minimum 1). This function does the same as ``paintCards()`` except that it paints the cards as if they are stacked on top of each other. Depending on the value of the bool ``topRHS``, the top side can either be on the right (if true), or the left hand side (if false).
+``paintStacked(vector<Card> cardVect, int numPainted, int facedown, bool topRHS)`` can take 4 arguments (minimum 1). This function does the same as ``paintCards()`` except that it paints the cards as if they are stacked on top of each other. Depending on the value of the bool ``topRHS``, the top side can either be on the right (if true), or the left hand side (if false).
 - ``cardVect`` The card vector being paintedS
 - ``numPainted`` See paintCards()
 - ``facedown`` See paintCards()
@@ -102,5 +105,69 @@ Each card Suit and facdown cards are represented in array strings (spadeCard, di
 ``shuffleAnimation(verbose=true)`` takes 1 argument (minimum zero). Shows a shuffling animation, this animation happens in ``createDeck()`` by default. This function does not actually shuffle a Card vector, it simply does the animation.
 - ``verbose`` If this is true, messages will be displayed along with the shuffling animation.
 
+# Overloads.h
 
-To be continued...
+Overloads.h contains all the overloaded operators that can be used with the Card objects and vectors. For example, you can paint a card directly by using the `<<` operator, or even use `+=` to add a Card object to a vector.
+
+
+The purpose of these overloads is to abstract the "painting" of cards and to provide a short-hand alternative method to paint the cards. These overloads  
+
+
+Below is a comprehensive list of all the overloaded operations available. These implementations will also be demonstrated in some provided examples. These notes are taken directly from the comments from the source code, so if you are unsure of how an implementation works, either check the example ``.cpp`` files or check this file for more details.
+
+These notes are taken directly from the ``Overloads.h``. They may make more sense if you just read through that file directly.
+### Printing 
+
+- Directly print Card objects through output stream with '<<'
+``ostream& operator<<(ostream& out, Card c);``
+
+- Directly print Card vectors through output stream with '<<'
+``ostream& operator<<(ostream& out, vector<Card> cardVect);``
+
+### Addition ops
+
+- Return a Card object added to a Card vector
+Does not modify original vector
+``vector<Card> operator+(vector<Card> cardVect, Card c);``
+
+- Reversed. This way of inserting is much less efficient and should not be used often
+``vector<Card> operator+(Card c, vector<Card> cardVect);``
+
+- Append a Card object to a Card vector with '+='
+``void operator+=(vector<Card> &cardVect, Card c);``
+
+- Return two Card vectors combined into one.
+Does not modify original vectors
+``vector<Card> operator+(vector<Card> a, vector<Card> b);``
+
+- Return a vector made from 2 Card objects
+``vector<Card> operator+(Card a, Card b);``
+
+- Combine two Card vectors 
+Directly modifies the left vector operand
+``void operator+=(vector<Card> &a, vector<Card> b);``
+
+### Subtraction ops
+
+- Remove the first instance of Card object found in the vector if it exists.
+Directly modifies the vector of the left operand
+``void operator-=(vector<Card> &cardVect, Card c);``
+
+- Remove the first instance of all cards in vector b from vector a. 
+Directly modifies the Card vector
+``void operator-=(vector<Card> &a, vector<Card> b);``
+
+- Return the  card Vector, "minus" the card specified. 
+Only removes the first instance of the card if multiple exist.
+Does not directly modify the Card vector
+``vector<Card> operator-(vector<Card> cardVect, Card c);``
+
+- Return the Card vector a, minus all the cards in Card vector b that are found in a.
+Does not directly modify the Card vector
+``vector<Card> operator-(vector<Card> a, vector<Card> b);``
+
+- Subtracting an int, n from a Card vector will return the painted cards with n-cards facedown. 
+Example use: ``cout << cardVect-2 << endl;``.
+This will paint all cards in cardVect but with 2 facing down.
+``string operator-(vector<Card> cardVect, int n);``
+

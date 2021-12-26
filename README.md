@@ -96,9 +96,9 @@ Each card Suit and facdown cards are represented in array strings (spadeCard, di
 
 
 ``paintStacked(vector<Card> cardVect, int numPainted, int facedown, bool topRHS)`` can take 4 arguments (minimum 1). This function does the same as ``paintCards()`` except that it paints the cards as if they are stacked on top of each other. Depending on the value of the bool ``topRHS``, the top side can either be on the right (if true), or the left hand side (if false).
-- ``cardVect`` The card vector being paintedS
-- ``numPainted`` See paintCards()
-- ``facedown`` See paintCards()
+- ``cardVect`` The card vector being painted
+- ``numPainted`` See ``paintCards()``
+- ``facedown`` See ``paintCards()``
 - ``topRHS`` If this value is true, the cards will be painted with the top card on the right hand side. If its false, the top card will be on the left hand side.
 
 The image below illustrates the 3 different stack modes that you can use.

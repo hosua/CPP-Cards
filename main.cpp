@@ -15,7 +15,7 @@ void gamemenu(){
 	cin >> opt;
 	switch (opt){
 	case 1:
-		cout << "Starting game of War" << endl;
+		cout << "Starting a game of War" << endl;
 		war();
 		break;
 	case 0:
@@ -30,6 +30,10 @@ void gamemenu(){
 }
 
 int main(){
+	// Be sure to start your program with this for rng to work properly
+	// The seed will be based on the second the program is executed on.
+	srand(time(0)); 
+
 	gamemenu();
 }
 

@@ -1,5 +1,8 @@
 #include "../Overloads.h"
 
+#ifndef _WAR
+#define _WAR
+
 inline static const chrono::milliseconds TIME_CONST(1000); 
 
 map <Rank, int> rankToPts;
@@ -76,6 +79,10 @@ void war(){
             break;
 
         case Calculating: // Calculate winner
+            cout << "Player: " << playerScore << " points" << endl;
+            cout << player << endl; // Show player & computer's card, face up
+            cout << "Computer: " << computerScore << " points" << endl;
+            cout << computer << endl; 
             Card c = getWinner(player[0], computer[0]);
             if (c.getPair() == player[0].getPair()){
                 cout << "Player wins!" << endl;
@@ -93,3 +100,5 @@ void war(){
         }
     }
 }
+
+#endif

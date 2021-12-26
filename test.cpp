@@ -262,7 +262,7 @@ int main(){
 		"testProg2()", // Endlessly draw 5 cards from a deck
 		"testProg3()", // Draw a random amount of cards and display a random amount facedown
 		"ovlExample1()", // See the syntax of how overloads can be used
-		"ovlExample2()",
+		"ovlExample2()", // More overload examples
 		"war()" // An endless demo of the game, War. No gameplay involved. This demo runs automatically 
 	};
 	cout << endl;

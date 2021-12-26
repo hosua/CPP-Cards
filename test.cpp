@@ -149,7 +149,7 @@ void ovlExample2(){
     auto hand2 = drawCards(deck, 5); 
 
     cout << "\ncout << Card(Ace, Spade) + Card(Ace, Diamond) + Card(Ace, Club) + Card(Ace, Heart) << endl;" << endl;
-    // You can concatenate card objects together to print a cardVector.
+    // You can concatenate Card vectors together to print a combined one
     cout << Card(Ace, Spade) + Card(Ace, Diamond) + Card(Ace, Club) + Card(Ace, Heart) << endl;
 
 
@@ -251,6 +251,10 @@ void war(){
 }
 
 int main(){
+	// Be sure to start your program with this for rng to work properly
+	// The seed will be based on the second the program is executed on.
+	srand(time(0)); 
+
 	int option;
 	vector<string> opts = {
 		"paintTest()", // Shows all kinds of stack modes

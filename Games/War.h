@@ -48,10 +48,10 @@ void war(){
             cout << "Press enter to draw a card.";
             cin.get();
             clear();
-            cout << "Cards remaining: " << deck.size() << endl;
             player = drawCards(deck, 1, false); // Draw 1 card, without verbose output
-            cout << "Player: " << playerScore << " points\n" << player-1 << endl; 
             computer = drawCards(deck, 1, false);
+            cout << "Cards remaining: " << deck.size() << endl;
+            cout << "Player: " << playerScore << " points\n" << player-1 << endl; 
             cout << "Computer: " << computerScore << " points\n" << computer-1 << endl; 
             this_thread::sleep_for(TIME_CONST*1.5);
             clear();

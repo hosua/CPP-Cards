@@ -82,7 +82,7 @@ Please note that the option to use overloaded operators is available as well. Th
 
 How the cards are painted:
 
-Each card Suit and facdown cards are represented in array strings (``spadeCard``, ``diamondCard``, ``facedownCard``... etc.) with a 'Z' character as the placeholder for a Rank. The 'Z' is later replaced with the appropriate character when its being painted to represent a proper card (10 is handled manually because it is 2 characters long)
+Each card Suit and facedown cards are represented in array strings (``spadeCard``, ``diamondCard``, ``facedownCard``... etc.) with a 'Z' character as the placeholder for a Rank. The 'Z' is later replaced with the appropriate character when its being painted to represent a proper card (10 is handled manually because it is 2 characters long)
 
 
 ## Functions
@@ -124,33 +124,33 @@ Below is a comprehensive list of all the overloaded operations available. These 
 ### Printing 
 
 - ``ostream& operator<<(ostream& out, Card c);``
-Directly print Card objects through output stream with '<<'
+Directly print Card objects through output stream with '<<'.
 
 - ``ostream& operator<<(ostream& out, vector<Card> cardVect);``
-Directly print Card vectors through output stream with '<<'
+Directly print Card vectors through output stream with '<<'.
 
 ### Addition operations
 
 - ``vector<Card> operator+(vector<Card> cardVect, Card c);``
-Return a Card object added to a Card vector
-Does not modify original vector
+Return a Card object added to a Card vector.
+Does not modify original vector.
 
 - ``vector<Card> operator+(Card c, vector<Card> cardVect);``
-Reversed. This way of inserting is much less efficient and should not be used often
+Reversed. This way of inserting is much less efficient and should not be used often.
 
 - ``void operator+=(vector<Card> &cardVect, Card c);``
-Append a Card object to a Card vector with '+='
+Append a Card object to a Card vector with '+='.
 
 - ``vector<Card> operator+(vector<Card> a, vector<Card> b);``
 Return two Card vectors combined into one.
-Does not modify original vectors
+Does not modify original vectors.
 
 - ``vector<Card> operator+(Card a, Card b);``
-Return a vector made from 2 Card objects
+Return a vector made from 2 Card objects.
 
 - ``void operator+=(vector<Card> &a, vector<Card> b);``
-Combine two Card vectors 
-Directly modifies the left vector operand
+Combine two Card vectors.
+Directly modifies the left vector operand.
 
 ### Subtraction operations
 

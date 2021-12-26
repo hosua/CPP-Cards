@@ -10,7 +10,7 @@ void gamemenu(){
 		cout << i + 1 << ") " << games[i] << endl;
 	}
 	cout << endl;
-	cout << "Enter a number to select a game:" << endl;
+	cout << "Enter a number to select a game:";
 	int opt;
 	cin >> opt;
 	switch (opt){

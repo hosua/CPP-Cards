@@ -91,7 +91,7 @@ Each card Suit and facdown cards are represented in array strings (``spadeCard``
 
 ``paintCards(vector<Card> cardVect, int numPainted=-1, int facedown=0)`` can take 3 arguments (minimum 1). This function paints the entire card vector, and does not stack them on top of each other.
 - ``cardVect`` The card vector to paint.
-- ``numPainted`` You can choose to not paint the entire vector. This card will paint the amount of cards specified by this variable.
+- ``numPainted`` You can choose to not paint the entire vector. This number will determine amount of cards to paint.
 - ``facedown`` You can paint cards facing down. This variable determines the number that are facedown.
 
 

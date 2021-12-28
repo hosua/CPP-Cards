@@ -6,7 +6,9 @@ TO DO:
 - Make War game
 
 KNOWN BUGS:
-- When in "WAR", if either player is out of cards in their main hand, a segmentation fault occurs.
+- When in "WAR", if either player is out of cards in their main hand, a segmentation fault occurs. <- Potentially fixed needs testing
+- When there is two consecutive "WARS", the game gets stuck in a softlock. (The first card remains the first card so the war continues forever)A <- Potentially fixed needs testing
+- War loops infinitely when the game is over (Did not implement "start new game" yet)
 
 You can test and see some basic implementations of the engine by compiling and running ``test.cpp``, and reading through its source code. It goes over the function overloading and the use of most of the available functions.
 
@@ -18,7 +20,7 @@ This is currently a work in progress. I plan on implementing a few games using t
 
 
 # Getting Started
-Please note that this guide assumes that you have ``gcc/g++`` installed **and** eadded to your system variable PATH on your computer. You will need it to compile this program. If you do not, please see a guide on how to do that for your operating system. This guide **will not** go over how to do that.
+Please note that this guide assumes that you have ``gcc/g++`` installed **and** added to your system variable PATH on your computer. You will need it to compile this program. If you do not, please see a guide on how to do that for your operating system. This guide **will not** go over how to do that.
 
 
 ### Windows

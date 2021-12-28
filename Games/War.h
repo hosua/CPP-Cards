@@ -212,17 +212,19 @@ void war(){
                 cout << "Shuffling the player's discarded cards and placing them back in their hand." << endl;
                 shuffleCards(computerHand, true, false);
             }
-
-            /* Ensure we dont overdraw cards for player */
+            /* Ensure we dont overdraw cards for player 
+             * This will draw new cards to the beginning of the hand to prevent an endless loop if another
+             * war occurs
+             */
             if (playerHand.size() >= 3)
-                playerField += drawCards(playerHand, 3, false);
+                playerField = drawCards(playerHand, 3, false) + playerField;
             else
-                playerField += drawCards(playerHand, playerHand.size(), false);
+                playerField = drawCards(playerHand, playerHand.size(), false) + playerField;
 
             if (computerHand.size() >= 3)
-                computerField += drawCards(computerHand, 3, false);
+                computerField = drawCards(computerHand, 3, false) + computerField;
             else
-                computerField += drawCards(computerHand, computerHand.size(), false);
+                computerField = drawCards(computerHand, computerHand.size(), false) + computerField;
 
             cout << "WAR!" << endl
             << "Cards are placed on the field by both players!" << endl

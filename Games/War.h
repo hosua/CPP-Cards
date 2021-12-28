@@ -9,16 +9,6 @@ inline static const chrono::milliseconds TIME_CONST(1000);
 
 map <Rank, int> rankToPts;
 
-/* Original deck */
-vector<Card> deck = createDeck();
-/* These are the cards being played */
-vector<Card> playerHand, computerHand;     
-/* These are the cards that are out-of-play. They are shuffled and reinserted into the deck when
-    * They are shuffled and reinserted into the hand when the hand vectors are empty.
-    */
-vector<Card> playerDiscard, computerDiscard; 
-/* These card vectors are using when there is a tie, (a war) */
-vector<Card> playerField, computerField;
 
 // Returns the winning card. Returns a Null card if it's a tie.
 Card getWinner(Card a, Card b){
@@ -32,6 +22,18 @@ Card getWinner(Card a, Card b){
 }
 
 void war(){
+
+    /* Original deck */
+    vector<Card> deck = createDeck();
+    /* These are the cards being played */
+    vector<Card> playerHand, computerHand;     
+    /* These are the cards that are out-of-play. They are shuffled and reinserted into the deck when
+        * They are shuffled and reinserted into the hand when the hand vectors are empty.
+        */
+    vector<Card> playerDiscard, computerDiscard; 
+    /* These card vectors are using when there is a tie, (a war) */
+    vector<Card> playerField, computerField;
+
 	// Be sure to start your program with this for rng to work properly
 	// The seed will be based on the second the program is executed on.
 	srand(time(0)); 

@@ -87,21 +87,26 @@ void war(){
             // Verify that player & cpu have cards remaining
             if (playerHand.size() == 0){
                 if (playerDiscard.size() == 0){
-                    cout << "Player loses!" << endl;
-                    playerWin = true;
+                    cout << "Game over! Player lost the war!" << endl;
+                    playerWin = false;
                     state = END_PHASE;
-                }
+                }  
                 playerHand += playerDiscard;
                 playerDiscard.clear();
+                cout << "Shuffling the player's discarded cards and placing them back in their hand." << endl;
+                shuffleCards(playerHand, true, false);
+
             }
             if (computerHand.size() == 0){
                 if (computerDiscard.size() == 0){
-                    cout << "Computer loses!" << endl;
-                    playerWin = false;
+                    cout << "Player wins the war! Congratulations" << endl;
+                    playerWin = true;
                     state = END_PHASE;
                 }
                 computerHand += computerDiscard;
                 computerDiscard.clear();
+                shuffleCards(computerHand, true, false);
+                cout << "Shuffling the player's discarded cards and placing them back in their hand." << endl;
             }
             cout << "Player card count: " << playerHand.size() << endl 
             << "Player discarded cards count: " << playerDiscard.size() << endl
@@ -183,11 +188,27 @@ void war(){
         case WAR_INIT_PHASE:
         {
             /* Ensure we dont overdraw cards for player */
+            /* THIS IS BROKEN */
             if (playerHand.size() >= 3)
                 playerField += drawCards(playerHand, 3, false);
             else
                 playerField += drawCards(playerHand, playerHand.size(), false);
+            /* Do same for CPU */
 
+            if (playerHand.size() == 0){
+                if (playerDiscard.size() == 0){
+                    cout << "Player loses the war!" << endl;
+                    playerWin = false;
+                    state = END_PHASE;
+                }
+            }
+            if (computerHand.size() == 0){
+                if (computerDiscard.size() == 0){
+                    cout << "Player wins the war! Congratulations!" << endl;
+                    playerWin = true;
+                    state = END_PHASE;
+                }
+            }
             /* Ensure we dont overdraw cards for computer */
             if (computerHand.size() >= 3)
                 computerField += drawCards(computerHand, 3, false);
@@ -278,7 +299,11 @@ void war(){
             }
             state = INIT_PHASE;
         }
-        
+        case END_PHASE:
+        {
+
+        }
+
         }
         
         

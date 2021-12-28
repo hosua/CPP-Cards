@@ -163,6 +163,22 @@ inline string operator-(vector<Card> cardVect, int n){
     return outStr;
 }
 
+
+/* A single card can be subtracted by a number to display it faced down.
+ * Since a single card is 1 card, this number should be subtracted by 1.   
+ * If it's not, it will be automatically assumed as such, and it will be mentioned   
+ * if verboseOverloads is true.   
+ */   
+inline string operator-(Card c, int n){
+    vector<Card> cardVect = {c};
+    if (n != 1){
+        if (verboseOverloads)
+            cout << "A number other 1 was subtracted from a single card, will assume 1 face down." << endl;
+    }
+    n = 1;
+    return cardVect - 1;
+}
+
 #endif
 
 

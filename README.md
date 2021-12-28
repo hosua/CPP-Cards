@@ -56,7 +56,7 @@ To run the test
 - Run it with ``./a.out`` 
 
 To run the card games
-- Compile it with``g++ main.cpp -std=gnu++11`` 
+- Compile it with ``g++ main.cpp -std=gnu++11`` 
 - Run it with ``./a.out``
 
 
@@ -226,3 +226,8 @@ Subtracting an int, n from a Card vector will return the painted cards with n-ca
 Example use: ``cout << cardVect-2 << endl;``.
 This will paint all cards in cardVect but with 2 facing down.
 
+- ``inline string operator-(Card c, int n);``
+A single card can be subtracted by a number to display it faced down.
+Since a single card is 1 card, this number should be subtracted by 1.   
+If it's not, it will be automatically assumed as such, and it will be mentioned if verboseOverloads is true.   
+   

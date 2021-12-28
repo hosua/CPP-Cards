@@ -133,7 +133,7 @@ class Card{
 		friend ostream& operator<<(ostream& out, vector<Card> cardVect);
 
 		// Return a Card object added to a Card vector
-		// ***Does not modify original vector
+		// ** Does not modify original vector
 		friend vector<Card> operator+(vector<Card> cardVect, Card c);
 		// Reversed
 		friend vector<Card> operator+(Card c, vector<Card> cardVect);
@@ -142,35 +142,48 @@ class Card{
 		// Append a Card object to a deck with '+='
 		friend void operator+=(vector<Card> &cardVect, Card c);
 
-		// Return two Card vectors combined into one.
-		// ***Does not modify original vector
+		/* Return two Card vectors combined into one.
+		 * ***Does not modify original vector
+		 */
 		friend vector<Card> operator+(vector<Card> a, vector<Card> b);
 
-		// Combine two Card vectors 
-		// ***Directly modifies the vector
+		/* Combine two Card vectors 
+		 * ** Directly modifies the vector
+		 */
 		friend void operator+=(vector<Card> &a, vector<Card> b);
 
-		// Remove the first instance of Card object found in the vector if it exists.
-		// ** Directly modifies the vector 
+		/* Remove the first instance of Card object found in the vector if it exists.
+		 * ** Directly modifies the vector 
+		 */
 		friend void operator-=(vector<Card> &cardVect, Card c);
 
-		// Remove the first instance of all cards in vector b from vector a. 
-		// ** Directly modifies the Card vector
+		/* Remove the first instance of all cards in vector b from vector a. 
+		 * ** Directly modifies the Card vector
+		 */
 		friend void operator-=(vector<Card> &a, vector<Card> b);
 
-		// Return the card Vector, "minus" the card specified. 
-		// Only removes the first instance of the card if multiple exist.
-		// ** Does not directly modify the Card vector
+		/* Return the card Vector, "minus" the card specified. 
+		 * Only removes the first instance of the card if multiple exist.
+		 * ** Does not directly modify the Card vector
+		 */
 		friend vector<Card> operator-(vector<Card> cardVect, Card c);
-		// Return the Card vector a, minus all the cards in Card vector b that are found in a.
-		// ** Does not directly modify the Card vector
+		/* Return the Card vector a, minus all the cards in Card vector b that are found in a.
+		 * ** Does not directly modify the Card vector 
+		 */
 		friend vector<Card> operator-(vector<Card> a, vector<Card> b);
-		// Subtracting an integer from a Card vector will return the painted cards
-		// but with n-cards facedown. 
-		// Example use: 
-		// cout << cardVect-2 << endl;
-		// This will print all cards in cardVect but with 2 facing down.
+		/* Subtracting an integer from a Card vector will return the painted cards
+		 * but with n-cards facedown. 
+		 * Example use: 
+		 * cout << cardVect-2 << endl;
+		 * This will print all cards in cardVect but with 2 facing down.
+		 */
 		friend string operator-(vector<Card> cardVect, int n);
+		/* A single card can be subtracted by a number to display it faced down.
+		 * Since a single card is 1 card, this number should be subtracted by 1.
+		 * If it's not, it will be automatically assumed as such, and it will be mentioned
+		 * if verboseOverloads is true.
+		 */
+		friend string operator-(Card c, int n);
 
 
 	
@@ -233,6 +246,10 @@ inline void shuffleCards(vector<Card> &cards, bool animate=true, bool verbose=tr
 inline vector<Card> drawCards(vector<Card> &cardVect, int numDrawn=1, bool verbose=true){
 	vector <Card> c;
 	int a = 0;
+	// Never draw too many cards
+	if (numDrawn > cardVect.size()){
+		numDrawn = cardVect.size();
+	}
 	if (cardVect.size() != 0){
 		while (a < numDrawn){
 			c.push_back(cardVect.back());

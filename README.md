@@ -5,6 +5,9 @@ TO DO:
 - Add a ``sort()`` function for Card vectors
 - Make War game
 
+KNOWN BUGS:
+- When in "WAR", if either player is out of cards in their main hand, a segmentation fault occurs.
+
 You can test and see some basic implementations of the engine by compiling and running ``test.cpp``, and reading through its source code. It goes over the function overloading and the use of most of the available functions.
 
 Most of this information is also commented in the code, so please be sure to check out the comments as well if anything doesn't make sense to you.

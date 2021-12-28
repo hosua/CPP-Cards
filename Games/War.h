@@ -8,6 +8,18 @@ const bool AUTO_RUN = true;
 inline static const chrono::milliseconds TIME_CONST(1000); 
 
 map <Rank, int> rankToPts;
+
+/* Original deck */
+vector<Card> deck = createDeck();
+/* These are the cards being played */
+vector<Card> playerHand, computerHand;     
+/* These are the cards that are out-of-play. They are shuffled and reinserted into the deck when
+    * They are shuffled and reinserted into the hand when the hand vectors are empty.
+    */
+vector<Card> playerDiscard, computerDiscard; 
+/* These card vectors are using when there is a tie, (a war) */
+vector<Card> playerField, computerField;
+
 // Returns the winning card. Returns a Null card if it's a tie.
 Card getWinner(Card a, Card b){
     int apts = rankToPts.find(a.getRank())->second, bpts = rankToPts.find(b.getRank())->second;
@@ -18,6 +30,7 @@ Card getWinner(Card a, Card b){
     else 
         return Card(NULLR, NULLS);
 }
+
 void war(){
 	// Be sure to start your program with this for rng to work properly
 	// The seed will be based on the second the program is executed on.
@@ -29,22 +42,6 @@ void war(){
         pts++;
     }
     rankToPts.insert(pair<Rank, int>(ACE, pts++));
-    /*
-    // Output point chart
-    for (auto it = rankToPts.begin(); it != rankToPts.end(); it++){
-        cout << "Rank: " << rankToStr.find(it->first)->second << "\tpts: " << it->second << endl;
-    }
-    */
-    /* Original deck */
-    vector<Card> deck = createDeck();
-    /* These are the cards being played */
-    vector<Card> playerHand, computerHand;     
-    /* These are the cards that are out-of-play. They are shuffled and reinserted into the deck when
-     * They are shuffled and reinserted into the hand when the hand vectors are empty.
-     */
-    vector<Card> playerDiscard, computerDiscard; 
-    /* These card vectors are using when there is a tie, (a war) */
-    vector<Card> playerField, computerField;
     /* REMOVE AFTER TESTING */
     /*
     for (int i = 0; i < 26; i++){
@@ -60,17 +57,19 @@ void war(){
                 WAR_INIT_PHASE, WAR_REVEAL_PHASE, WAR_CALC_PHASE,
                 END_PHASE
             };
-    State state = START_PHASE;
+    State phase = START_PHASE;
     bool playerWin;
     while (true){
         clear();
-        switch(state){
+        // Clear consolue output at the beginning of every phase
+        switch(phase){
         case START_PHASE:
         {
             cout << "Starting a game. Good luck!" << endl;
             verboseOverloads = false; 
-            /* I don't really have to deal the cards like this but this way of iterating stays true to the game rules */
-            for (int i = 0; i < 26; i++){ // Deal each player 1 card per iteration
+            /* I don't really have to deal the cards like this but this way of 
+             * iterating stays true to the game rules */
+            for (int i = 0; i < 26; i++){ 
                 playerHand += drawCards(deck, 1, false); 
                 computerHand += drawCards(deck, 1, false);
             }
@@ -80,7 +79,7 @@ void war(){
                 cout << "Done! Press enter to continue" << endl;
                 cin.get();
             } 
-            state = INIT_PHASE;
+            phase = INIT_PHASE;
         }
         case INIT_PHASE:  
         {
@@ -89,7 +88,7 @@ void war(){
                 if (playerDiscard.size() == 0){
                     cout << "Game over! Player lost the war!" << endl;
                     playerWin = false;
-                    state = END_PHASE;
+                    phase = END_PHASE;
                 }  
                 playerHand += playerDiscard;
                 playerDiscard.clear();
@@ -101,7 +100,7 @@ void war(){
                 if (computerDiscard.size() == 0){
                     cout << "Player wins the war! Congratulations" << endl;
                     playerWin = true;
-                    state = END_PHASE;
+                    phase = END_PHASE;
                 }
                 computerHand += computerDiscard;
                 computerDiscard.clear();
@@ -123,7 +122,7 @@ void war(){
             } else {
                 this_thread::sleep_for(TIME_CONST*1.5);
             }
-            state = REVEAL_PHASE;
+            phase = REVEAL_PHASE;
             break;
         }
 
@@ -145,7 +144,7 @@ void war(){
             } else {
                 this_thread::sleep_for(TIME_CONST*1.5);
             }
-            state = CALC_PHASE;
+            phase = CALC_PHASE;
             break;
         }
         case CALC_PHASE: // Calculate winner
@@ -172,7 +171,7 @@ void war(){
                 playerHand -= playerHand[0];
                 computerHand -= computerHand[0];
                 
-                state = WAR_INIT_PHASE;
+                phase = WAR_INIT_PHASE;
                 break;
             }
             if (!AUTO_RUN){
@@ -181,40 +180,47 @@ void war(){
             } else {
                 this_thread::sleep_for(TIME_CONST*1.5);
             }
-            state = INIT_PHASE;
+            phase = INIT_PHASE;
             break;
         }
         // Every tie will incur another war until there is no tie
         case WAR_INIT_PHASE:
         {
-            /* Ensure we dont overdraw cards for player */
-            /* THIS IS BROKEN */
-            if (playerHand.size() >= 3)
-                playerField += drawCards(playerHand, 3, false);
-            else
-                playerField += drawCards(playerHand, playerHand.size(), false);
-            /* Do same for CPU */
+            /* Ensure we dont overdraw cards for computer */
 
             if (playerHand.size() == 0){
                 if (playerDiscard.size() == 0){
                     cout << "Player loses the war!" << endl;
                     playerWin = false;
-                    state = END_PHASE;
+                    phase = END_PHASE;
                 }
+                playerHand += playerDiscard;
+                playerDiscard.clear();
+                cout << "Shuffling the player's discarded cards and placing them back in their hand." << endl;
+                shuffleCards(playerHand, true, false);
             }
             if (computerHand.size() == 0){
                 if (computerDiscard.size() == 0){
                     cout << "Player wins the war! Congratulations!" << endl;
                     playerWin = true;
-                    state = END_PHASE;
+                    phase = END_PHASE;
                 }
+                computerHand += computerDiscard;
+                computerDiscard.clear();
+                cout << "Shuffling the player's discarded cards and placing them back in their hand." << endl;
+                shuffleCards(computerHand, true, false);
             }
-            /* Ensure we dont overdraw cards for computer */
+
+            /* Ensure we dont overdraw cards for player */
+            if (playerHand.size() >= 3)
+                playerField += drawCards(playerHand, 3, false);
+            else
+                playerField += drawCards(playerHand, playerHand.size(), false);
+
             if (computerHand.size() >= 3)
                 computerField += drawCards(computerHand, 3, false);
             else
                 computerField += drawCards(computerHand, computerHand.size(), false);
-
 
             cout << "WAR!" << endl
             << "Cards are placed on the field by both players!" << endl
@@ -232,7 +238,7 @@ void war(){
             } else {
                 this_thread::sleep_for(TIME_CONST*1.5);
             }
-            state = WAR_REVEAL_PHASE;
+            phase = WAR_REVEAL_PHASE;
             break;
         }
         case WAR_REVEAL_PHASE:
@@ -251,7 +257,7 @@ void war(){
             } else {
                 this_thread::sleep_for(TIME_CONST*1.5);
             }
-            state = WAR_CALC_PHASE;
+            phase = WAR_CALC_PHASE;
             break;
 
         }
@@ -288,7 +294,7 @@ void war(){
                 // For now while testing, we will pause the game here 
                 cout << "Press enter to continue" << endl;
                 cin.get();
-                state = WAR_INIT_PHASE;
+                phase = WAR_INIT_PHASE;
                 break;
             }
             if (!AUTO_RUN){
@@ -297,7 +303,7 @@ void war(){
             } else {
                 this_thread::sleep_for(TIME_CONST*1.5);
             }
-            state = INIT_PHASE;
+            phase = INIT_PHASE;
         }
         case END_PHASE:
         {

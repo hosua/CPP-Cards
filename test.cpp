@@ -11,8 +11,8 @@ void paintTest1(){
 	cout << "Paint test 1 (NONE)" << endl;
 	vector<Card> hand;
 	for (auto its = suitToStr.begin(); its != suitToStr.end(); its++){
-		hand.push_back(Card(Ace, its->first));
-		hand.push_back(Card(Ten, its->first));
+		hand.push_back(Card(ACE, its->first));
+		hand.push_back(Card(TEN, its->first));
 	}
 	cout << paintCards(hand, 6, 4);
 }
@@ -22,8 +22,8 @@ void paintTest2(){
 	cout << "Paint test 2 (RHS)" << endl;
 	vector<Card> hand;
 	for (auto its = suitToStr.begin(); its != suitToStr.end(); its++){
-		hand.push_back(Card(Ace, its->first));
-		hand.push_back(Card(Ten, its->first));
+		hand.push_back(Card(ACE, its->first));
+		hand.push_back(Card(TEN, its->first));
 	}
 	cout << paintStacked(hand, 6, 4);
 }
@@ -32,8 +32,8 @@ void paintTest3(){
 	cout << "Paint test 3 (LHS)" << endl;
 	vector<Card> hand;
 	for (auto its = suitToStr.begin(); its != suitToStr.end(); its++){
-		hand.push_back(Card(Ace, its->first));
-		hand.push_back(Card(Ten, its->first));
+		hand.push_back(Card(ACE, its->first));
+		hand.push_back(Card(TEN, its->first));
 	}
 	cout << paintStacked(hand, 6, 4, false);
 }
@@ -125,13 +125,13 @@ void ovlExample1(){
 
     cout << "hand += Card(King, Diamond);" << endl;
     // We can add a card directly to a Card vector with '+=' operator
-    hand += Card(King, Diamond);
+    hand += Card(KING, DIAMOND);
     
     cout << hand << endl;
 
     cout << "hand -= Card(King, Diamond);" << endl;
     // We can delete a card from a cardVect with '-='
-    hand -= Card(King, Diamond);
+    hand -= Card(KING, DIAMOND);
 
     cout << hand << endl;
 
@@ -150,13 +150,13 @@ void ovlExample2(){
 
     cout << "\ncout << Card(Ace, Spade) + Card(Ace, Diamond) + Card(Ace, Club) + Card(Ace, Heart) << endl;" << endl;
     // You can concatenate Card vectors together to print a combined one
-    cout << Card(Ace, Spade) + Card(Ace, Diamond) + Card(Ace, Club) + Card(Ace, Heart) << endl;
+    cout << Card(ACE, SPADE) + Card(ACE, DIAMOND) + Card(ACE, CLUB) + Card(ACE, HEART) << endl;
 
 
     cout << "cout << hand1 + Card(Ace, Spade) + hand2 + Card(Ace, Diamond) + Card(Ace, Heart) << endl;" << endl;
     // You can concatenate Card vectors and Card objects together in any order.
     // This does not modify any of the card vectors.
-    cout << hand1 + Card(Ace, Spade) + hand2 + Card(Ace, Diamond) + Card(Ace, Heart) << endl;
+    cout << hand1 + Card(ACE, SPADE) + hand2 + Card(ACE, DIAMOND) + Card(ACE, HEART) << endl;
 
 }
 
@@ -172,7 +172,7 @@ Card getWinner(Card a, Card b){
     else if (rankToPts.find(a.getRank())->second < rankToPts.find(b.getRank())->second)
         return b;
     else 
-        return Card(NullR, NullS);
+        return Card(NULLR, NULLS);
 }
 void war(){
 	// Be sure to start your program with this for rng to work properly
@@ -184,7 +184,7 @@ void war(){
         rankToPts.insert(pair<Rank, int>(itr->first, pts));
         pts++;
     }
-    rankToPts.insert(pair<Rank, int>(Ace, pts++));
+    rankToPts.insert(pair<Rank, int>(ACE, pts++));
 
     // Output point chart
     for (auto it = rankToPts.begin(); it != rankToPts.end(); it++){

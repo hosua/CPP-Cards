@@ -7,8 +7,9 @@ TO DO:
 
 KNOWN BUGS:
 - When in "WAR", if either player is out of cards in their main hand, a segmentation fault occurs. <- Potentially fixed needs testing
-- When there is two consecutive "WARS", the game gets stuck in a softlock. (The first card remains the first card so the war continues forever)A <- Potentially fixed needs testing
+- When there is two consecutive "WARS", the game gets stuck in a softlock. (The first card remains the first card so the war continues forever) <- Fixed but needs further testing
 - War loops infinitely when the game is over (Did not implement "start new game" yet)
+- There is an error somewhere in the code causing cards to be duplicated. (This may just be due to the fact that start new game has not been implemented yet)
 
 You can test and see some basic implementations of the engine by compiling and running ``test.cpp``, and reading through its source code. It goes over the function overloading and the use of most of the available functions.
 

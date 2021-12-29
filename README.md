@@ -3,12 +3,14 @@ Text-based card game engine in C++
 
 TO DO: 
 - Add a ``sort()`` function for Card vectors
-- Polish War game
+- Make War game
 
 KNOWN BUGS:
-- When in "WAR", if either player is out of cards in their main hand, a segmentation fault occurs. <- RESOLVED
-- When there is two consecutive "WARS", the game gets stuck in a softlock. (The first card remains the first card so the war continues forever) <- RESOLVED
-- War loops infinitely when the game is over (Did not implement "start new game" yet) <- RESOLVED BUT UNTESTED
+- When in "WAR", if either player is out of cards in their main hand, a segmentation fault occurs. <- Potentially fixed needs testing
+- When there is two consecutive "WARS", the game gets stuck in a softlock. (The first card remains the first card so the war continues forever) <- Fixed but needs further testing
+- War loops infinitely when the game is over (Did not implement "start new game" yet)
+- There is an error somewhere in the code causing cards to be duplicated. (This may just be due to the fact that start new game has not been implemented yet)
+- Something is causing the games to end prematurely sometimes, I'm not really sure what.
 
 You can test and see some basic implementations of the engine by compiling and running ``test.cpp``, and reading through its source code. It goes over the function overloading and the use of most of the available functions.
 
@@ -26,8 +28,6 @@ Please note that this guide assumes that you have ``gcc/g++`` installed **and** 
 ### Windows
 You can compile the provided programs by running the ``compile_windows.bat`` script.
 
-After compiling, run the ``Cards.exe`` file to play the games. You can also run ``test.exe`` to view the output of the test programs.
-
 If you would like to compile and run the programs yourself,
 
 To run the test
@@ -42,8 +42,6 @@ Then run ``a.exe``
 ### Linux 
 You can compile the provided programs by running the ``compile_linux.sh`` script (``./compile_linux.sh`` in the terminal)
 
-After compiling, run the ``Cards.out`` file to play the games. You can also run ``test.out`` to view the output of the test programs.
-
 If you would like to compile and run the programs yourself,
 
 To run the test
@@ -57,8 +55,6 @@ To run the card games
 
 ### MacOS
 You can compile the provided programs by running the ``compile_mac.sh`` script (``./compile_mac.sh`` in the terminal)
-
-After compiling, run the ``Cards.out`` file to play the games. You can also run ``test.out`` to view the output of the test programs.
 
 If you would like to compile and run the programs yourself,
 

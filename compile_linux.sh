@@ -1,2 +1,2 @@
-g++ main.cpp -o main.out
+g++ main.cpp -o Cards.out
 g++ test.cpp -o test.out

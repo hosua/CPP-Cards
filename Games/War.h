@@ -3,11 +3,12 @@
 #ifndef _WAR
 #define _WAR
 
-const bool AUTO_RUN = true;
+bool auto_run = true;
 
 inline static const chrono::milliseconds TIME_CONST(1000); 
 
 map <Rank, int> rankToPts;
+int playerVictories = 0, computerVictories = 0;
 
 
 // Returns the winning card. Returns a Null card if it's a tie.
@@ -22,6 +23,34 @@ Card getWinner(Card a, Card b){
 }
 
 void war(){
+    // Automatic will play the game without user input.
+    // Manual will require user input to continue
+    int opt;
+    cout << "Do you want the gameplay to be automatic or manual?" << endl
+         << "1) Automatic" << endl 
+         << "2) Manual" << endl
+         << "0) Exit game" << endl;
+    cin >> opt;
+    switch(opt){
+    case 0:
+        exit(0);
+        break;
+    case 1:
+        cout << "Selected automatic mode." << endl;
+        auto_run = true;
+        break;
+    case 2:
+        cout << "Selected manual mode." << endl;
+        auto_run = false;
+        break;
+    default:
+        cout << "Invalid input, exiting the game." << endl;
+        exit(1);
+        break;
+    }
+    this_thread::sleep_for(TIME_CONST);
+    
+    
 
     /* Original deck */
     vector<Card> deck = createDeck();
@@ -77,7 +106,7 @@ void war(){
             }
             cout << "Dealing the cards to both players..." << endl;
             this_thread::sleep_for(TIME_CONST*2);
-            if (!AUTO_RUN){
+            if (!auto_run){
                 cout << "Done! Press enter to continue" << endl;
                 cin.get();
             } 
@@ -109,7 +138,8 @@ void war(){
                 shuffleCards(computerHand, true, false);
                 cout << "Shuffling the player's discarded cards and placing them back in their hand." << endl;
             }
-            cout << "Player card count: " << playerHand.size() << endl 
+            cout << "Games won: " << playerVictories << "\tGames Lost: " << computerVictories << endl
+            << "Player card count: " << playerHand.size() << endl 
             << "Player discarded cards count: " << playerDiscard.size() << endl
             << "Total player cards: " << playerHand.size() + playerDiscard.size() << endl
             << playerHand[0] - 1
@@ -118,7 +148,7 @@ void war(){
             << "Total computer cards: " << computerHand.size() + computerDiscard.size() << endl
             << computerHand[0] - 1;
             
-            if (!AUTO_RUN){
+            if (!auto_run){
                 cout << "Press enter to reveal the next card." << endl;
                 cin.get();
             } else {
@@ -131,6 +161,7 @@ void war(){
         case REVEAL_PHASE: // Flip one card up
         {
             cout << "Cards were revealed!" << endl
+            << "Games won: " << playerVictories << "\tGames Lost: " << computerVictories << endl
             << "Player card count: " << playerHand.size() << endl
             << "Player discarded cards count: " << playerDiscard.size() << endl
             << "Total player cards: " << playerHand.size() + playerDiscard.size() << endl
@@ -140,7 +171,7 @@ void war(){
             << "Total computer cards: " << computerHand.size() + computerDiscard.size() << endl
             << computerHand[0];
 
-            if (!AUTO_RUN){
+            if (!auto_run){
             cout << "Press enter to continue." << endl;
             cin.get();
             } else {
@@ -176,7 +207,7 @@ void war(){
                 phase = WAR_INIT_PHASE;
                 break;
             }
-            if (!AUTO_RUN){
+            if (!auto_run){
                 cout << "Press enter to continue." << endl;
                 cin.get();
             } else {
@@ -228,6 +259,7 @@ void war(){
 
             cout << "WAR!" << endl
             << "Cards are placed on the field by both players!" << endl
+            << "Games won: " << playerVictories << "\tGames Lost: " << computerVictories << endl
             << "Player card count: " << playerHand.size() << endl
             << "Discarded cards count: " << playerDiscard.size() << endl
             << "Cards on field: " << playerField.size() << endl
@@ -236,7 +268,7 @@ void war(){
             << "Discarded cards count: " << computerDiscard.size() << endl
             << "Cards on field: " << computerField.size() << endl
             << computerField - computerField.size();
-            if (!AUTO_RUN){
+            if (!auto_run){
             cout << "Press enter to reveal the cards." << endl;
             cin.get();
             } else {
@@ -249,13 +281,14 @@ void war(){
         {
             cout << "WAR!" << endl
             << "The cards were revealed!" << endl
+            << "Games won: " << playerVictories << "\tGames Lost: " << computerVictories << endl
             << "Player card count: " << playerHand.size() << endl
             << "Player discarded cards count: " << playerDiscard.size() << endl
             << playerField - (playerField.size()-1)
             << "Computer card count: " << computerHand.size() << endl
             << "Computer discarded cards count: " << computerDiscard.size() << endl
             << computerField - (computerField.size()-1);
-            if (!AUTO_RUN){
+            if (!auto_run){
             cout << "Press enter to reveal the cards." << endl;
             cin.get();
             } else {
@@ -288,20 +321,17 @@ void war(){
                 computerField.clear();
             } else { /* A tie means war again */
                 cout << "WAR CONTINUES!" << endl;
-                /*
-                if (!AUTO_RUN){
+                
+                if (!auto_run){
                     cout << "Press enter to continue" << endl;
                     cin.get(); 
                 } else {
                     this_thread::sleep_for(TIME_CONST*3);
-                }*/
-                // For now while testing, we will pause the game here 
-                cout << "Press enter to continue" << endl;
-                cin.get();
+                }
                 phase = WAR_INIT_PHASE;
                 break;
             }
-            if (!AUTO_RUN){
+            if (!auto_run){
                 cout << "Press enter to continue." << endl;
                 cin.get();
             } else {
@@ -311,7 +341,19 @@ void war(){
         }
         case END_PHASE:
         {
-
+            if (playerWin)
+                playerVictories++;
+            else
+                computerVictories++;
+            if (!auto_run){
+                cout << "Press enter to start a new game." << endl;
+                cin.get();
+            } else {
+                this_thread::sleep_for(TIME_CONST);
+            }
+            cout << "Starting a new game..." << endl;
+            this_thread::sleep_for(TIME_CONST*2);
+            phase = START_PHASE;
         }
 
         }
